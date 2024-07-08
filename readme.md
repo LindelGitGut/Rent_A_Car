@@ -31,6 +31,10 @@ Da Springboot/Tomcat standardmäßig 200 Threads zur Verfügung stellt,
 können wir davon ausgehen, dass wir 200 Requests pro Sekunde verarbeiten können.
 
 
+Daher sollten wir mit einer einzelnen Springboot Instanz genügend Kapazitäten
+haben um den Anforderungen gerecht zu werden.
+
+
 
 
    
