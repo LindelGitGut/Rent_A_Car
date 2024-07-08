@@ -1,15 +1,8 @@
 package de.lindele.carapp.rental.repository.model;
 
 import de.lindele.carapp.car.repository.model.CarEntity;
-import de.lindele.carapp.customer.repository.model.CustomerEntity;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
+import de.lindele.carapp.customer.service.model.Customer;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -24,11 +17,11 @@ public class RentalEntity {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "customer_id")
-    private CustomerEntity customer;
+    @JoinColumn(name = "customer_id", nullable = false)
+    private Customer customer;
 
     @ManyToOne
-    @JoinColumn(name = "car_id")
+    @JoinColumn(name = "car_id", nullable = false)
     private CarEntity car;
 
     @Temporal(TemporalType.DATE)
@@ -37,5 +30,6 @@ public class RentalEntity {
     @Temporal(TemporalType.DATE)
     private Date returnDate;
 
-    private int kilometersDriven;
+    private int kilometers;
+
 }
