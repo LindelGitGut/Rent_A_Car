@@ -1,5 +1,26 @@
 Ziel ist es eine API zu schaffen welche folgende bedingungen erfüllt:
 
+
+1. Die API soll es ermöglichen Fahrzeuge zu verwalten
+2. Die API soll es ermöglichen Kunden zu verwalten
+3. Die API soll es ermöglichen Termine/Reservierungen zu verwalten
+4. Es soll nachvollziehbar sein welches Fahrzeug aktuell zur Verfügung steht
+
+Daher werden 3 Entitäten benötigt:
+
+1. Fahrzeug => Fahrzeuge n -> 1 Kunde
+2. Kunde => Kunde 1 -> n Termine
+3. Termin
+
+
+Da wir dem 3 Schicht System arbeiten sollen die concerns getrennt werden:
+ d.h. wir haben eine Schicht für die Datenbank, eine Schicht für die Logik und eine Schicht für die Präsentation
+ d.h wir haben je ein Model für Service, Repository und Controller um eine einfache Anpassbarkeit sowie Skalierung zu ermöglichen
+
+
+
+
+
 Rahmen:
 
 ca. 250.000 Fahrzeuge zu verwalten
