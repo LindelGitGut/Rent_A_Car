@@ -1,0 +1,81 @@
+# Maven specific files
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# Spring Tool Suite (STS)
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+# IntelliJ IDEA specific files
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+
+# NetBeans specific files
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+# Visual Studio Code specific files
+.vscode/
+
+# Default ignored files from .idea/gitignore
+/shelf/
+/workspace.xml
+
+# Project-specific files
+*.log
+*.class
+*.jar
+*.war
+*.ear
+
+# Compiled source
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# Packages
+*.jar
+*.war
+*.ear
+*.tar.gz
+*.rar
+
+# Logs and databases
+*.log
+*.sql
+*.sqlite
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Spring Boot specific files
+*.pid
+*.h2.db
+*.mv.db
+
+# Environment variables
+.env
+
+# Dependency directories
+node_modules/
+bower_components/
