@@ -14,7 +14,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
-@RestController("/car")
+@RestController
+@RequestMapping("/car")
 //@Api(value = "Car Management System")
 public class CarController {
 

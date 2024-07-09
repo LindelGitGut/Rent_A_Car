@@ -17,11 +17,11 @@ public class CarWebModelMapper {
         //TODO Test is properties are copied correctly, testing
 
         Car car = new Car();
-        car.setModel(car.getModel());
-        car.setMake(carWebModel.getMake());
+        car.setModel(carWebModel.getModel());
+        car.setMake(carWebModel.getBrand());
         car.setDrivenkilometers(carWebModel.getDrivenkilometers());
-        car.setRegistrationNumber(car.getRegistrationNumber());
-        car.setPricePerKilometer(car.getPricePerKilometer());
+        car.setRegistrationNumber(carWebModel.getRegistrationNumber());
+        car.setPricePerKilometer(carWebModel.getPricePerKilometer());
         car.setColor(carWebModel.getColor());
         return car;
     }
@@ -29,7 +29,7 @@ public class CarWebModelMapper {
     public CarWebModel map(Car car) {
         CarWebModel carWebModel= new CarWebModel();
         carWebModel.setModel(car.getModel());
-        carWebModel.setMake(car.getMake());
+        carWebModel.setBrand(car.getMake());
         carWebModel.setDrivenkilometers(car.getDrivenkilometers());
         carWebModel.setRegistrationNumber(car.getRegistrationNumber());
         carWebModel.setPricePerKilometer(car.getPricePerKilometer());

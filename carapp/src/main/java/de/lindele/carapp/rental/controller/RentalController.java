@@ -9,7 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 
-@RestController("/rental")
+@RestController
+@RequestMapping("/rental")
 //@Api(value = "Rental Management System")
 public class RentalController {
 

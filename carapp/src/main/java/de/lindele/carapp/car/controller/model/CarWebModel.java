@@ -16,7 +16,7 @@ public class CarWebModel {
 
     //TODO check which Properties are needed for Webmodel
 
-    private String make;
+    private String brand;
     private String model;
     private String registrationNumber;
     private String color;
@@ -26,11 +26,12 @@ public class CarWebModel {
     @Override
     public String toString() {
         return "CarWebModel{" +
-                "make='" + make + '\'' +
+                "make='" + brand + '\'' +
                 ", model='" + model + '\'' +
                 ", registrationNumber='" + registrationNumber + '\'' +
                 ", color='" + color + '\'' +
                 ", drivenkilometers=" + drivenkilometers +
+
                 ", pricePerKilometer=" + pricePerKilometer +
                 '}';
     }
