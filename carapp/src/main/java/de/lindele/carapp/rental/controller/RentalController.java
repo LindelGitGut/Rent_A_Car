@@ -1,5 +1,6 @@
 package de.lindele.carapp.rental.controller;
 
+import de.lindele.carapp.rental.controller.model.RentalWebModel;
 import de.lindele.carapp.rental.service.RentalService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,26 +25,30 @@ public class RentalController {
     //CREATE
 
     @PostMapping
-    <RentalWebModel> ResponseEntity<RentalWebModel> createRental(@RequestBody RentalWebModel rentalWebModel) {
-        return ResponseEntity.ok(rentalService.createRental(rentalWebModel));
+    ResponseEntity<RentalWebModel> createRental(@RequestBody RentalWebModel rentalWebModel) {
+       // return ResponseEntity.ok(rentalService.createRental(rentalWebModel));
+        return null;
     }
 
 
     //READ
     @GetMapping
-    <RentalWebModel> ResponseEntity<RentalWebModel> getRental(@PathVariable Long id) {
-        return ResponseEntity.ok(rentalService.getRental(id));
+         ResponseEntity<RentalWebModel> getRental(@PathVariable Long id) {
+        //return ResponseEntity.ok(rentalService.getRental(id));
+        return null;
     }
 
     //UPDATE
     @PutMapping
-    <RentalWebModel> ResponseEntity<RentalWebModel> updateRental(@RequestBody RentalWebModel rentalWebModel) {
-        return ResponseEntity.ok(rentalService.updateRental(rentalWebModel));
+        ResponseEntity<RentalWebModel> updateRental(@RequestBody RentalWebModel rentalWebModel) {
+        //return ResponseEntity.ok(rentalService.updateRental(rentalWebModel));
+        return null;
     }
 
     //DELETE
     @DeleteMapping
-    <RentalWebModel> ResponseEntity<RentalWebModel> deleteRental(@PathVariable Long id) {
-        return ResponseEntity.ok(rentalService.deleteRental(id));
+    ResponseEntity<RentalWebModel> deleteRental(@PathVariable Long id) {
+        //return ResponseEntity.ok(rentalService.deleteRental(id));
+        return null;
     }
 }

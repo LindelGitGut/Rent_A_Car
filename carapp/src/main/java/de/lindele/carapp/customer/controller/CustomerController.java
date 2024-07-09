@@ -21,25 +21,29 @@ public class CustomerController {
 
     @PostMapping
     <CustomerWebModel> ResponseEntity<CustomerWebModel> createCustomer(@RequestBody CustomerWebModel customerWebModel) {
-        return ResponseEntity.ok(customerService.createCustomer(customerWebModel));
+        //return ResponseEntity.ok(customerService.createCustomer(customerWebModel));
+        return null;
     }
 
 
     //READ
     @GetMapping
     <CustomerWebModel> ResponseEntity<CustomerWebModel> getCustomer(@PathVariable Long id) {
-        return ResponseEntity.ok(customerService.getCustomer(id));
+       // return ResponseEntity.ok(customerService.getCustomer(id));
+        return null;
     }
     //UPDATE
     @PutMapping
     <CustomerWebModel> ResponseEntity<CustomerWebModel> updateCustomer(@RequestBody CustomerWebModel customerWebModel) {
-        return ResponseEntity.ok(customerService.updateCustomer(customerWebModel));
+        //return ResponseEntity.ok(customerService.updateCustomer(customerWebModel));
+        return null;
     }
 
     //DELETE
     @DeleteMapping
     <CustomerWebModel> ResponseEntity<CustomerWebModel> deleteCustomer(@PathVariable Long id) {
-        return ResponseEntity.ok(customerService.deleteCustomer(id));
+       // return ResponseEntity.ok(customerService.deleteCustomer(id));
+        return null;
     }
 
 }
