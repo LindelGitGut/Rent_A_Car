@@ -1,9 +1,7 @@
 package de.lindele.carapp.car.repository.adapter;
 
 
-import de.lindele.carapp.car.repository.mapper.CarEntityMapper;
 import de.lindele.carapp.car.repository.model.CarEntity;
-import de.lindele.carapp.car.service.model.Car;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -15,6 +13,15 @@ import java.util.Optional;
 public interface CarRepository extends JpaRepository<CarEntity, Long> {
     Page<CarEntity> findByBrand(String brand, Pageable pageable);
 
+    Page<CarEntity> findByColor(String color, Pageable pageable);
+
+    Optional<CarEntity> findById(Long id);
+
+    void deleteById(Long id);
+
+    Page<CarEntity> findAll(Pageable pageable);
+
+    Page<CarEntity> findByBrandAndColor(String brand, String color, Pageable pageable);
 
 
 }
