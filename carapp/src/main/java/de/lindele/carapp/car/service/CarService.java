@@ -42,8 +42,8 @@ public class CarService {
         return carPersistencePort.saveCar(car);
     }
 
-    public Object deleteCar(Long id) {
-        return carPersistencePort.deleteCar(id);
+    public void deleteCar(Long id) {
+         carPersistencePort.deleteCar(id);
     }
 
 
