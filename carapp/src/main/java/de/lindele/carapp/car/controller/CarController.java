@@ -5,7 +5,7 @@ import de.lindele.carapp.car.controller.mapper.CarWebModelMapper;
 import de.lindele.carapp.car.controller.model.CarWebModel;
 import de.lindele.carapp.car.service.CarService;
 import de.lindele.carapp.car.service.model.Car;
-import io.swagger.annotations.Api;
+//import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -15,7 +15,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 @RestController("/car")
-@Api(value = "Car Management System")
+//@Api(value = "Car Management System")
 public class CarController {
 
     @Autowired

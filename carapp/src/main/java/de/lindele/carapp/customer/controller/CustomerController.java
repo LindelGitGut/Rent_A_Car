@@ -2,13 +2,13 @@ package de.lindele.carapp.customer.controller;
 
 
 import de.lindele.carapp.customer.service.CustomerService;
-import io.swagger.annotations.Api;
+//import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController("/customer")
-@Api(value = "Customer Management System")
+//@Api(value = "Customer Management System")
 public class CustomerController {
 
     @Autowired
