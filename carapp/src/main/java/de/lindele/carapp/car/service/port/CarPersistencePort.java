@@ -59,12 +59,11 @@ public interface CarPersistencePort {
      * @return The updated car.
      */
 
-    Car updateCar(Car car);
+    Car updateCar(Car car, Long id);
 
     /**
      * Delete a car.
      * @param id The id of the car to delete.
-     * @return True if the car was deleted, false otherwise.
      */
-    boolean deleteCar(Long id);
+    void deleteCar(Long id);
 }
