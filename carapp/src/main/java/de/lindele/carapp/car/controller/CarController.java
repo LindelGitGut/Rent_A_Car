@@ -68,7 +68,7 @@ public class CarController {
             return ResponseEntity.ok(cars.map(carWebModelMapper::map));
         }
 
-        cars = carService.getAllCars();
+        cars = carService.getAllCars(pageable);
         return ResponseEntity.ok(cars.map(carWebModelMapper::map));
     }
 
