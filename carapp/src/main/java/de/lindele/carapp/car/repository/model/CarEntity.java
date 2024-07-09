@@ -1,26 +1,27 @@
 package de.lindele.carapp.car.repository.model;
 
 import de.lindele.carapp.rental.repository.model.RentalEntity;
-import de.lindele.carapp.rental.service.model.Rental;
 import jakarta.persistence.*;
+import java.util.List;
+
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.util.List;
 
 @Entity
 @Getter
 @Setter
+@Table(name = "car")
 public class CarEntity {
-    public class Car {
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private Long id;
-        private String make;
-        private String model;
-        private String registrationNumber;
-
-        @OneToMany(mappedBy = "car", cascade = CascadeType.ALL, orphanRemoval = true)
-        private List<RentalEntity> rentals;
-    }
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String brand;
+    private String model;
+    private String color;
+    private String registrationNumber;
+    private int kilometer; // Kilometerstand
+    private double pricePerKilometer;
+    @OneToMany(mappedBy = "car", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<RentalEntity> rentals;
 }
