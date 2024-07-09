@@ -1,6 +1,7 @@
 package de.lindele.carapp.rental.repository.model;
 
 import de.lindele.carapp.car.repository.model.CarEntity;
+import de.lindele.carapp.customer.repository.model.CustomerEntity;
 import de.lindele.carapp.customer.service.model.Customer;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -18,7 +19,7 @@ public class RentalEntity {
 
     @ManyToOne
     @JoinColumn(name = "customer_id", nullable = false)
-    private Customer customer;
+    private CustomerEntity customer;
 
     @ManyToOne
     @JoinColumn(name = "car_id", nullable = false)
