@@ -31,6 +31,7 @@ public class CarController {
     //TODO Implement and extend CRUD-Endpoints
     //CREATE
 
+    //Funktioniert
     @PostMapping
     ResponseEntity<CarWebModel> createCar(@RequestBody CarWebModel carWebModel) {
         //convert CarWebModel to Car
@@ -41,11 +42,14 @@ public class CarController {
     }
 
     //READ
+
+    //Funktioniert
     @GetMapping("/{id}")
     ResponseEntity<CarWebModel> getCar(@PathVariable Long id) {
         return ResponseEntity.ok(carWebModelMapper.map(carService.getCarById(id)));
     }
 
+    //Funktioniert?
     @GetMapping
     ResponseEntity<Page<CarWebModel>> getAllCars(
             @RequestParam(required = false) String brand,
@@ -54,6 +58,12 @@ public class CarController {
     ) {
 
         Page<Car> cars;
+
+        if(StringUtils.hasText(brand) && StringUtils.hasText(color)){
+            cars = carService.getAllCarsByBrandAndColor(brand, color, pageable);
+            return ResponseEntity.ok(cars.map(carWebModelMapper::map));
+        }
+
         if (StringUtils.hasText(brand)) {
             cars = carService.getAllCarsByBrand(brand, pageable);
             return ResponseEntity.ok(cars.map(carWebModelMapper::map));
@@ -61,11 +71,6 @@ public class CarController {
 
         if (StringUtils.hasText(color)) {
             cars = carService.getAllCarsByColor(color, pageable);
-            return ResponseEntity.ok(cars.map(carWebModelMapper::map));
-        }
-
-        if(StringUtils.hasText(brand) && StringUtils.hasText(color)){
-            cars = carService.getAllCarsByBrandAndColor(brand, color, pageable);
             return ResponseEntity.ok(cars.map(carWebModelMapper::map));
         }
 
