@@ -22,8 +22,6 @@ public class CustomerEntityMapper {
         customerEntity.setLastname(customer.getLastname());
         customerEntity.setPostalCode(customer.getPostalCode());
         customerEntity.setCity(customer.getCity());
-
-
         return customerEntity;
     }
 
@@ -32,12 +30,13 @@ public class CustomerEntityMapper {
         Customer customer = new Customer();
         customer.setId(customerEntity.getId());
         customer.setAddress(customerEntity.getAddress());
+        customer.setCity(customerEntity.getCity());
+        customer.setPostalCode(customerEntity.getPostalCode());
         customer.setBirthdate(customerEntity.getBirthdate());
         customer.setEmail(customerEntity.getEmail());
         customer.setPhoneNumber(customerEntity.getPhoneNumber());
         customer.setFirstname(customerEntity.getFirstname());
         customer.setLastname(customerEntity.getLastname());
-
         return customer;
     }
 

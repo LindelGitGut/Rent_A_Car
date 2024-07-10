@@ -5,12 +5,16 @@ import de.lindele.carapp.customer.repository.model.CustomerEntity;
 import de.lindele.carapp.customer.service.model.Customer;
 import de.lindele.carapp.customer.service.port.CustomerPersistencePort;
 import de.lindele.carapp.exception.ResourceNotFoundException;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
+@Repository
+@RequiredArgsConstructor
 public class CustomerRepositoryAdapter implements CustomerPersistencePort {
     @Autowired
     private CustomerRepository customerRepository;
@@ -63,19 +67,19 @@ public class CustomerRepositoryAdapter implements CustomerPersistencePort {
 
     @Override
     public Page<Customer> findAllCustomerByFirstName(String firstName, Pageable pageable) {
-        Page<CustomerEntity> customers = customerRepository.findByFirstName(firstName, pageable);
+        Page<CustomerEntity> customers = customerRepository.findByFirstname(firstName, pageable);
         return customers.map(customerEntityMapper::map);
     }
 
     @Override
     public Page<Customer> findAllCustomerByLastName(String lastName, Pageable pageable) {
-        Page<CustomerEntity> customers = customerRepository.findByLastName(lastName, pageable);
+        Page<CustomerEntity> customers = customerRepository.findByLastname(lastName, pageable);
         return customers.map(customerEntityMapper::map);
     }
 
     @Override
     public Page<Customer> findAllCustomerByFirstNameAndLastName(String firstName, String lastName, Pageable pageable) {
-        Page<CustomerEntity> customers = customerRepository.findByFirstNameAndLastName(firstName, lastName, pageable);
+        Page<CustomerEntity> customers = customerRepository.findByFirstnameAndLastname(firstName, lastName, pageable);
                return customers.map(customerEntityMapper::map);
     }
 

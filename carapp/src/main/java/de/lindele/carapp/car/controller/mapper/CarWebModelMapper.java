@@ -18,7 +18,7 @@ public class CarWebModelMapper {
 
         Car car = new Car();
         car.setModel(carWebModel.getModel());
-        car.setMake(carWebModel.getBrand());
+        car.setBrand(carWebModel.getBrand());
         car.setDrivenkilometers(carWebModel.getDrivenkilometers());
         car.setRegistrationNumber(carWebModel.getRegistrationNumber());
         car.setPricePerKilometer(carWebModel.getPricePerKilometer());
@@ -29,7 +29,7 @@ public class CarWebModelMapper {
     public CarWebModel map(Car car) {
         CarWebModel carWebModel= new CarWebModel();
         carWebModel.setModel(car.getModel());
-        carWebModel.setBrand(car.getMake());
+        carWebModel.setBrand(car.getBrand());
         carWebModel.setDrivenkilometers(car.getDrivenkilometers());
         carWebModel.setRegistrationNumber(car.getRegistrationNumber());
         carWebModel.setPricePerKilometer(car.getPricePerKilometer());

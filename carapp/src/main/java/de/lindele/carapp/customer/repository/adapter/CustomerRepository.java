@@ -13,9 +13,9 @@ import java.util.Optional;
 @Repository
 public interface CustomerRepository extends JpaRepository<CustomerEntity, Long>{
 
-    Page<CustomerEntity> findByFirstName(String firstName, Pageable pageable);
+    Page<CustomerEntity> findByFirstname(String firstName, Pageable pageable);
 
-    Page<CustomerEntity> findByLastName(String lastName, Pageable pageable);
+    Page<CustomerEntity> findByLastname(String lastName, Pageable pageable);
 
-    Page<CustomerEntity> findByFirstNameAndLastName(String firstName, String lastName, Pageable pageable);
+    Page<CustomerEntity> findByFirstnameAndLastname(String firstName, String lastName, Pageable pageable);
 }

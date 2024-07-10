@@ -12,9 +12,6 @@ import lombok.Setter;
 @Getter
 public class CreateCarRequest {
 
-    @NotNull
-    @NotBlank
-    private Long id;
 
     @NotNull
     @NotBlank

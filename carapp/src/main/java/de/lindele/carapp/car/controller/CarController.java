@@ -2,7 +2,9 @@ package de.lindele.carapp.car.controller;
 
 
 import de.lindele.carapp.car.controller.mapper.CarWebModelMapper;
+import de.lindele.carapp.car.controller.mapper.CreateCarRequestMapper;
 import de.lindele.carapp.car.controller.model.CarWebModel;
+import de.lindele.carapp.car.controller.model.request.CreateCarRequest;
 import de.lindele.carapp.car.service.CarService;
 import de.lindele.carapp.car.service.model.Car;
 //import io.swagger.annotations.Api;
@@ -25,6 +27,9 @@ public class CarController {
     @Autowired
     private CarWebModelMapper carWebModelMapper;
 
+    @Autowired
+    private CreateCarRequestMapper createCarRequestMapper;
+
 
 
 
@@ -33,12 +38,12 @@ public class CarController {
 
     //Funktioniert
     @PostMapping
-    ResponseEntity<CarWebModel> createCar(@RequestBody CarWebModel carWebModel) {
+    ResponseEntity<CarWebModel> createCar(
+            @RequestBody CreateCarRequest createCarRequest) {
         //convert CarWebModel to Car
-        Car car = carWebModelMapper.map(carWebModel);
+        Car car = createCarRequestMapper.map(createCarRequest);
         //create car and return CarWebModel
         return ResponseEntity.ok(carWebModelMapper.map(carService.createCar(car)));
-
     }
 
     //READ

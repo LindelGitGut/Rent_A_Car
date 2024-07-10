@@ -24,13 +24,13 @@ public class CustomerWebModelMapper {
 
     public CustomerWebModel map (Customer customer){
         CustomerWebModel customerWebModel = new CustomerWebModel();
-        customerWebModel.setAddress(customerWebModel.getAddress());
-        customerWebModel.setCity(customerWebModel.getCity());
-        customerWebModel.setEmail(customerWebModel.getEmail());
-        customerWebModel.setFirstname(customerWebModel.getFirstname());
-        customerWebModel.setLastname(customerWebModel.getLastname());
-        customerWebModel.setPhoneNumber(customerWebModel.getPhoneNumber());
-        customerWebModel.setPostalCode(customerWebModel.getPostalCode());
+        customerWebModel.setAddress(customer.getAddress());
+        customerWebModel.setCity(customer.getCity());
+        customerWebModel.setEmail(customer.getEmail());
+        customerWebModel.setFirstname(customer.getFirstname());
+        customerWebModel.setLastname(customer.getLastname());
+        customerWebModel.setPhoneNumber(customer.getPhoneNumber());
+        customerWebModel.setPostalCode(customer.getPostalCode());
         customerWebModel.setBirthdate(new Date(customer.getBirthdate().getTime()));
         return customerWebModel;
     }

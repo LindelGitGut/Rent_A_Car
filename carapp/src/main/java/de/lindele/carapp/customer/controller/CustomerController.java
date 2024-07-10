@@ -1,8 +1,11 @@
 package de.lindele.carapp.customer.controller;
 
 
+import de.lindele.carapp.customer.controller.mapper.CreateCustomerRequestMapper;
 import de.lindele.carapp.customer.controller.mapper.CustomerWebModelMapper;
+import de.lindele.carapp.customer.controller.mapper.UpdateCustomerRequestMapper;
 import de.lindele.carapp.customer.controller.model.CustomerWebModel;
+import de.lindele.carapp.customer.controller.model.request.CreateCustomerRequest;
 import de.lindele.carapp.customer.service.CustomerService;
 //import io.swagger.annotations.Api;
 import de.lindele.carapp.customer.service.model.Customer;
@@ -24,15 +27,24 @@ public class CustomerController {
     @Autowired
     CustomerService customerService;
 
+    @Autowired
     CustomerWebModelMapper customerWebModelMapper;
+
+    @Autowired
+    CreateCustomerRequestMapper createCustomerRequestMapper;
+
+    @Autowired
+    UpdateCustomerRequestMapper updateCustomerRequestMapper;
 
 
 
     //TODO test CRUD-Endpoints
     //CREATE
+
+    //TODO check why city and postalcode get lost after saving , see saved Customer
     @PostMapping
-   ResponseEntity<CustomerWebModel> createCustomer(@RequestBody CustomerWebModel customerWebModel) {
-        Customer customer = customerWebModelMapper.map(customerWebModel);
+   ResponseEntity<CustomerWebModel> createCustomer(@RequestBody CreateCustomerRequest createCustomerRequest) {
+        Customer customer = createCustomerRequestMapper.map(createCustomerRequest);
             Customer savedCustomer = customerService.createCustomer(customer);
             URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                     .buildAndExpand(savedCustomer.getId()).toUri();
@@ -42,7 +54,7 @@ public class CustomerController {
 
 
     //READ
-    @GetMapping
+    @GetMapping("/{id}")
   ResponseEntity<CustomerWebModel> getCustomer(@PathVariable Long id) {
         Customer customer = customerService.getCustomer(id);
         return ResponseEntity.ok(customerWebModelMapper.map(customer));
