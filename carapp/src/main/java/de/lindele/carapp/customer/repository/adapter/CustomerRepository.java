@@ -1,4 +1,4 @@
-package de.lindele.carapp.customer.repository;
+package de.lindele.carapp.customer.repository.adapter;
 
 import de.lindele.carapp.customer.repository.model.CustomerEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
