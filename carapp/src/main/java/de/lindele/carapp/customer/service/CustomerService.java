@@ -15,12 +15,13 @@ public class CustomerService {
     @Autowired
     CustomerPersistencePort customerPersistencePort;
 
-    public void createCustomer(Customer customer) {
-
+    public Customer createCustomer(Customer customer) {
+        return customerPersistencePort.saveCustomer(customer);
     }
 
-    public void updateCustomer(Customer customer, Long id) {
-        customerPersistencePort.updateCustomer(customer);
+    public Customer updateCustomer(Customer customer, Long id) {
+        customer.setId(id);
+        return customerPersistencePort.updateCustomer(customer);
     }
 
     public void deleteCustomer(Long id) {
@@ -35,15 +36,15 @@ public class CustomerService {
         return customerPersistencePort.findAllCustomer(pageable);
     }
 
-    public Page<Customer> getCustomersByFirstName(String firstname, Pageable pageable) {
+    public Page<Customer> getAllCustomersByFirstName(String firstname, Pageable pageable) {
         return customerPersistencePort.findAllCustomerByFirstName(firstname, pageable);
     }
 
-    public Page<Customer> getCustomersByLastName(String lastname, Pageable pageable) {
+    public Page<Customer> getAllCustomersByLastName(String lastname, Pageable pageable) {
         return customerPersistencePort.findAllCustomerByFirstName(lastname, pageable);
     }
 
-    public Page<Customer> getCustomersByFirstNameAndLastName(String firstname, String lastname, Pageable pageable) {
+    public Page<Customer> getAllCustomersByFirstNameAndLastName(String firstname, String lastname, Pageable pageable) {
         return customerPersistencePort.findAllCustomerByFirstNameAndLastName(firstname, lastname, pageable);
     }
 
