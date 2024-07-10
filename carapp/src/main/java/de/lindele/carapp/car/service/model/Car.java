@@ -12,7 +12,7 @@ import lombok.Setter;
 @Setter
 public class Car {
 
-    private String make;
+    private String brand;
     private String model;
     private String color;
     private String registrationNumber;
