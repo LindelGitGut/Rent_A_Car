@@ -14,6 +14,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -41,17 +42,15 @@ public class CustomerController {
     //TODO test CRUD-Endpoints
     //CREATE
 
-    //TODO check why city and postalcode get lost after saving , see saved Customer
     @PostMapping
-   ResponseEntity<CustomerWebModel> createCustomer(@RequestBody CreateCustomerRequest createCustomerRequest) {
+   ResponseEntity<CustomerWebModel> createCustomer(
+           @RequestBody @Validated  CreateCustomerRequest createCustomerRequest) {
         Customer customer = createCustomerRequestMapper.map(createCustomerRequest);
             Customer savedCustomer = customerService.createCustomer(customer);
             URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                     .buildAndExpand(savedCustomer.getId()).toUri();
             return ResponseEntity.created(location).body(customerWebModelMapper.map(savedCustomer));
         }
-
-
 
     //READ
     @GetMapping("/{id}")
