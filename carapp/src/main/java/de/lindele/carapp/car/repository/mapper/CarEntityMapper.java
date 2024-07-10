@@ -12,7 +12,7 @@ public class CarEntityMapper {
 
     public Car map(CarEntity carEntity) {
         Car car = new Car();
-        car.setMake(carEntity.getBrand());
+        car.setBrand(carEntity.getBrand());
         car.setModel(carEntity.getModel());
         car.setRegistrationNumber(carEntity.getRegistrationNumber());
         car.setDrivenkilometers(carEntity.getKilometer());
@@ -23,13 +23,12 @@ public class CarEntityMapper {
 
     public CarEntity map(Car car) {
         CarEntity carEntity = new CarEntity();
-        carEntity.setBrand(car.getMake());
+        carEntity.setBrand(car.getBrand());
         carEntity.setModel(car.getModel());
         carEntity.setRegistrationNumber(car.getRegistrationNumber());
         carEntity.setKilometer(car.getDrivenkilometers());
         carEntity.setPricePerKilometer(car.getPricePerKilometer());
         carEntity.setColor(car.getColor());
-
         return carEntity;
     }
 
