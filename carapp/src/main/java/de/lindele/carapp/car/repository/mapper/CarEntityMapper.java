@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 
 @Component
-public  class CarEntityMapper {
+public class CarEntityMapper {
 
     public Car map(CarEntity carEntity) {
         Car car = new Car();
