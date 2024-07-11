@@ -1,6 +1,8 @@
 package de.lindele.carapp.customer.controller.mapper;
 
 
+import de.lindele.carapp.customer.controller.model.request.UpdateCustomerRequest;
+import de.lindele.carapp.customer.service.model.Customer;
 import org.springframework.stereotype.Component;
 
 
@@ -8,15 +10,18 @@ import org.springframework.stereotype.Component;
 @Component
 public class UpdateCustomerRequestMapper {
 
-    //   private Long id;
-    //    private String firstname;
-    //    private String lastname;
-    //    private String address;
-    //    private Date birthdate;
-    //    private String city;
-    //    private String postalCode;
-    //    private String phoneNumber;
-    //    private String email;
+    public Customer map(UpdateCustomerRequest updateCustomerRequest) {
+        Customer customer = new Customer();
+        customer.setFirstname(updateCustomerRequest.getFirstname());
+        customer.setLastname(updateCustomerRequest.getLastname());
+        customer.setAddress(updateCustomerRequest.getAddress());
+        customer.setBirthdate(updateCustomerRequest.getBirthdate());
+        customer.setCity(updateCustomerRequest.getCity());
+        customer.setPostalCode(updateCustomerRequest.getPostalCode());
+        customer.setPhoneNumber(updateCustomerRequest.getPhoneNumber());
+        customer.setEmail(updateCustomerRequest.getEmail());
+        return customer;
+    }
 
 
 
