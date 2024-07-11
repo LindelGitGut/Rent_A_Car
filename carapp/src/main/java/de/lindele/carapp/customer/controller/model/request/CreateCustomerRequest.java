@@ -29,7 +29,6 @@ public class CreateCustomerRequest {
     private String address;
 
     @NotNull
-    @NotBlank
     private Date birthdate;
 
     @NotNull
