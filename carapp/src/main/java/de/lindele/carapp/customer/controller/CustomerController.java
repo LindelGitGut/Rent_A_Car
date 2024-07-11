@@ -6,6 +6,7 @@ import de.lindele.carapp.customer.controller.mapper.CustomerWebModelMapper;
 import de.lindele.carapp.customer.controller.mapper.UpdateCustomerRequestMapper;
 import de.lindele.carapp.customer.controller.model.CustomerWebModel;
 import de.lindele.carapp.customer.controller.model.request.CreateCustomerRequest;
+import de.lindele.carapp.customer.controller.model.request.UpdateCustomerRequest;
 import de.lindele.carapp.customer.service.CustomerService;
 //import io.swagger.annotations.Api;
 import de.lindele.carapp.customer.service.model.Customer;
@@ -81,17 +82,19 @@ public class CustomerController {
         }
     }
 
+
+    //TODO benötigt erstmal rental um ordentlich zu funktionieren
     //UPDATE
     @PutMapping
     ResponseEntity<CustomerWebModel> updateCustomer(
-            @RequestBody CustomerWebModel customerWebModel,
+            @RequestBody @Validated UpdateCustomerRequest updateCustomerRequest,
             @RequestParam Long id) {
-       Customer customer = customerWebModelMapper.map(customerWebModel);
+       Customer customer = updateCustomerRequestMapper.map(updateCustomerRequest);
         return ResponseEntity.ok(customerWebModelMapper.map(customerService.updateCustomer(customer, id)));
     }
 
     //DELETE
-    @DeleteMapping
+    @DeleteMapping("/{id}")
      ResponseEntity<CustomerWebModel> deleteCustomer(@PathVariable Long id) {
         customerService.deleteCustomer(id);
         return ResponseEntity.noContent().build();
