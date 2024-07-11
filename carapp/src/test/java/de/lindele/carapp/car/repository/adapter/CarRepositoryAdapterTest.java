@@ -38,7 +38,16 @@ class CarRepositoryAdapterTest {
 
   @Test
   void saveCar() {
-    var car = new Car("brand", "model", "color", "registrationNumber", 100, new BigDecimal("0.5"));
+    var car =
+        Car.builder()
+            .brand("brand")
+            .model("model")
+            .color("color")
+            .registrationNumber("registrationNumber")
+            .drivenkilometers(1000)
+            .pricePerKilometer(new BigDecimal("1.5"))
+            .build();
+
     var carEntity =
         CarEntity.builder()
             .brand(car.getBrand())

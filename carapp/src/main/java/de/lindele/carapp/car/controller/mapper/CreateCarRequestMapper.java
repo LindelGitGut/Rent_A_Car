@@ -28,7 +28,8 @@ public class CreateCarRequestMapper {
   }
 
   public CreateCarRequest map(Car car) {
-    CreateCarRequest createCarRequest = CreateCarRequest.builder()
+    CreateCarRequest createCarRequest =
+        CreateCarRequest.builder()
             .brand(car.getBrand())
             .model(car.getModel())
             .color(car.getColor())

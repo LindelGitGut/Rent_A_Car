@@ -2,11 +2,13 @@ package de.lindele.carapp.car.controller;
 
 import de.lindele.carapp.car.controller.mapper.CarWebModelMapper;
 import de.lindele.carapp.car.controller.mapper.CreateCarRequestMapper;
+import de.lindele.carapp.car.controller.mapper.UpdateCarRequestMapper;
+// import io.swagger.annotations.Api;
 import de.lindele.carapp.car.controller.model.CarWebModel;
 import de.lindele.carapp.car.controller.model.request.CreateCarRequest;
+import de.lindele.carapp.car.controller.model.request.UpdateCarRequest;
 import de.lindele.carapp.car.service.CarService;
 import de.lindele.carapp.car.service.model.Car;
-// import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -28,6 +30,8 @@ public class CarController {
 
   private final CreateCarRequestMapper createCarRequestMapper;
 
+  private final UpdateCarRequestMapper updateCarRequestMapper;
+
   // TODO Implement and extend CRUD-Endpoints
   // CREATE
 
@@ -36,8 +40,9 @@ public class CarController {
   ResponseEntity<CarWebModel> createCar(@RequestBody CreateCarRequest createCarRequest) {
     // convert CarWebModel to Car
     Car car = createCarRequestMapper.map(createCarRequest);
-// create car and return CarWebModel with status 201 Created
-    return ResponseEntity.status(HttpStatus.CREATED).body(carWebModelMapper.map(carService.createCar(car)));
+    // create car and return CarWebModel with status 201 Created
+    return ResponseEntity.status(HttpStatus.CREATED)
+        .body(carWebModelMapper.map(carService.createCar(car)));
   }
 
   // READ
@@ -77,17 +82,18 @@ public class CarController {
   }
 
   // UPDATE
-  @PutMapping
+  @PutMapping("/{id}")
   ResponseEntity<CarWebModel> updateCar(
-      @RequestBody CarWebModel carWebModel, @RequestParam(required = true) Long id) {
-    // convert CarWebModel to Car
-    Car car = carWebModelMapper.map(carWebModel);
-    // update car and return CarWebModel
-    return ResponseEntity.ok(carWebModelMapper.map(carService.updateCar(car)));
+      @RequestBody UpdateCarRequest updateCarRequest, @PathVariable Long id) {
+
+    // convert updateCarRequest to Car
+    Car car = updateCarRequestMapper.map(updateCarRequest);
+
+    return ResponseEntity.ok(carWebModelMapper.map(carService.updateCar(car, id)));
   }
 
   // DELETE
-  @DeleteMapping
+  @DeleteMapping("/{id}")
   ResponseEntity<CarWebModel> deleteCar(@PathVariable Long id) {
     carService.deleteCar(id);
     return ResponseEntity.noContent().build();

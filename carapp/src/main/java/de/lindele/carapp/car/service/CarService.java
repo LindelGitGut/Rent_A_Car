@@ -33,8 +33,8 @@ public class CarService {
     return carPersistencePort.findAllCars(pageable);
   }
 
-  public Car updateCar(Car car) {
-    return carPersistencePort.saveCar(car);
+  public Car updateCar(Car car, Long id) {
+    return carPersistencePort.updateCar(car, id);
   }
 
   public void deleteCar(Long id) {

@@ -1,18 +1,19 @@
 package de.lindele.carapp.car.controller.model.request;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import java.math.BigDecimal;
+import lombok.*;
 
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
+@Builder
 public class UpdateCarRequest {
-  private Long id;
-  private String brand;
-  private String model;
-  private String color;
-  private String registrationNumber;
-  private int kilometer; // Kilometerstand
-  private double pricePerKilometer;
+
+  @NotBlank @NotBlank private String brand;
+  @NotNull @NotBlank private String model;
+  @NotNull @NotBlank private String color;
+  @NotNull @NotBlank private String registrationNumber;
+  @NotNull private int kilometer; // Kilometerstand
+  @NotNull private BigDecimal pricePerKilometer;
 }

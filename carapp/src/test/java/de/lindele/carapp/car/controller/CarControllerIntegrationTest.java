@@ -7,8 +7,6 @@ import de.lindele.carapp.car.controller.model.request.CreateCarRequest;
 import de.lindele.carapp.car.repository.adapter.CarRepository;
 import de.lindele.carapp.car.repository.model.CarEntity;
 import java.math.BigDecimal;
-
-import de.lindele.carapp.car.service.model.Car;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,25 +29,24 @@ class CarControllerIntegrationTest {
   @Test
   void createCar() {
 
-        CreateCarRequest request =  CreateCarRequest.builder()
-                .kilometer(1000)
-                .pricePerKilometer(new BigDecimal("1.5"))
-                .brand("brand")
-                .model("model")
-                .color("color")
-                .registrationNumber("registrationNumber")
-                .build();
+    CreateCarRequest request =
+        CreateCarRequest.builder()
+            .kilometer(1000)
+            .pricePerKilometer(new BigDecimal("1.5"))
+            .brand("brand")
+            .model("model")
+            .color("color")
+            .registrationNumber("registrationNumber")
+            .build();
 
-//        CarEntity.builder()
-//            .color("color")
-//            .kilometer(100)
-//            .pricePerKilometer(new BigDecimal(100))
-//            .brand("brand")
-//            .model("model")
-//            .registrationNumber("registrationNumber")
-//            .build();
-
-
+    //        CarEntity.builder()
+    //            .color("color")
+    //            .kilometer(100)
+    //            .pricePerKilometer(new BigDecimal(100))
+    //            .brand("brand")
+    //            .model("model")
+    //            .registrationNumber("registrationNumber")
+    //            .build();
 
     given()
         // .auth().oauth2("jwtpass")
@@ -59,7 +56,6 @@ class CarControllerIntegrationTest {
         .post("/car")
         .then()
         .statusCode(201);
-
   }
 
   @Test
@@ -86,11 +82,95 @@ class CarControllerIntegrationTest {
   }
 
   @Test
-  void getAllCars() {}
+  void getAllCars() {
+    CarEntity carEntity1 =
+        CarEntity.builder()
+            .color("color")
+            .kilometer(100)
+            .pricePerKilometer(new BigDecimal(100))
+            .brand("brand")
+            .model("model")
+            .registrationNumber("registrationNumber")
+            .build();
+
+    CarEntity carEntity2 =
+        CarEntity.builder()
+            .color("color")
+            .kilometer(100)
+            .pricePerKilometer(new BigDecimal(100))
+            .brand("brand")
+            .model("model")
+            .registrationNumber("registrationNumber")
+            .build();
+
+    carRepository.save(carEntity1);
+    carRepository.save(carEntity2);
+
+    given()
+        // .auth().oauth2("jwtpass")
+        .when()
+        .get("/car")
+        .then()
+        .statusCode(200);
+
+    carRepository.delete(carEntity1);
+    carRepository.delete(carEntity2);
+  }
 
   @Test
-  void updateCar() {}
+  void updateCar() {
+
+    CarEntity entity =
+        CarEntity.builder()
+            .color("color")
+            .kilometer(100)
+            .pricePerKilometer(new BigDecimal(100))
+            .brand("brand")
+            .model("model")
+            .registrationNumber("registrationNumber")
+            .build();
+    CarEntity savedEntity = carRepository.save(entity);
+
+    CreateCarRequest request =
+        CreateCarRequest.builder()
+            .kilometer(1000)
+            .pricePerKilometer(new BigDecimal("1.5"))
+            .brand("brand")
+            .model("model")
+            .color("color")
+            .registrationNumber("registrationNumber")
+            .build();
+
+    given()
+        // .auth().oauth2("jwtpass")
+        .contentType("application/json")
+        .body(request)
+        .when()
+        .put("/car/" + savedEntity.getId())
+        .then()
+        .statusCode(200);
+
+    carRepository.delete(savedEntity);
+  }
 
   @Test
-  void deleteCar() {}
+  void deleteCar() {
+    CarEntity entity =
+        CarEntity.builder()
+            .color("color")
+            .kilometer(100)
+            .pricePerKilometer(new BigDecimal(100))
+            .brand("brand")
+            .model("model")
+            .registrationNumber("registrationNumber")
+            .build();
+    CarEntity savedEntity = carRepository.save(entity);
+
+    given()
+        // .auth().oauth2("jwtpass")
+        .when()
+        .delete("/car/1")
+        .then()
+        .statusCode(204); // No Content
+  }
 }
