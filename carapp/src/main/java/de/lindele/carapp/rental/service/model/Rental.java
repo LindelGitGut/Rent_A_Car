@@ -1,6 +1,7 @@
 package de.lindele.carapp.rental.service.model;
 
 
+import de.lindele.carapp.car.controller.model.CarWebModel;
 import de.lindele.carapp.car.service.model.Car;
 import lombok.Getter;
 import lombok.Setter;

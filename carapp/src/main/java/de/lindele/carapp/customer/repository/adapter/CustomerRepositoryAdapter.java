@@ -16,9 +16,8 @@ import java.util.Optional;
 @Repository
 @RequiredArgsConstructor
 public class CustomerRepositoryAdapter implements CustomerPersistencePort {
-    @Autowired
+
     private CustomerRepository customerRepository;
-    @Autowired
     private CustomerEntityMapper customerEntityMapper;
 
     @Override

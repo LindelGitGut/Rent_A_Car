@@ -1,8 +1,12 @@
 package de.lindele.carapp.rental.controller.mapper;
 
+import de.lindele.carapp.car.controller.mapper.CarWebModelMapper;
 import de.lindele.carapp.rental.controller.model.RentalWebModel;
 import de.lindele.carapp.rental.service.model.Rental;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+
 
 
 @Component
