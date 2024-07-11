@@ -1,22 +1,19 @@
 package de.lindele.carapp.car.service.model;
 
+import java.math.BigDecimal;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
+@Data
+@Builder
 public class Car {
 
-    private String brand;
-    private String model;
-    private String color;
-    private String registrationNumber;
-    private Integer drivenkilometers;
-    private double pricePerKilometer;
-
+  private String brand;
+  private String model;
+  private String color;
+  private String registrationNumber;
+  private Integer drivenkilometers;
+  private BigDecimal pricePerKilometer;
 }
