@@ -12,6 +12,7 @@ import java.util.Date;
 @Entity
 @Getter
 @Setter
+@Table(name = "RENTAL")
 public class RentalEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
