@@ -38,7 +38,6 @@ public class CustomerController {
     UpdateCustomerRequestMapper updateCustomerRequestMapper;
 
 
-
     //TODO test CRUD-Endpoints
     //CREATE
 
