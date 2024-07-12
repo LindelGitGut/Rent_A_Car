@@ -7,6 +7,8 @@ import de.lindele.carapp.car.service.port.CarPersistencePort;
 import de.lindele.carapp.exception.ResourceNotFoundException;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.BeanUtils;
+import org.springframework.context.annotation.Bean;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
@@ -53,9 +55,9 @@ public class CarRepositoryAdapter implements CarPersistencePort {
   public Car updateCar(Car car, Long id) {
     Optional<CarEntity> savedCar = carRepository.findById(id);
     if (savedCar.isPresent()) {
-      CarEntity updatedCar = carEntityMapper.map(car);
-      updatedCar.setId(id);
-      return carEntityMapper.map(carRepository.save(updatedCar));
+      CarEntity savedEntity = savedCar.get();
+      BeanUtils.copyProperties(car, savedEntity, "id");
+      return carEntityMapper.map(carRepository.save(savedEntity));
     } else throw new ResourceNotFoundException("Car not found with id: " + id);
   }
 
