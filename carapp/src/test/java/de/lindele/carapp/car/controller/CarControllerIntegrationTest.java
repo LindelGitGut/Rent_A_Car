@@ -39,7 +39,6 @@ class CarControllerIntegrationTest {
             .registrationNumber("registrationNumber")
             .build();
 
-
     given()
         // .auth().oauth2("jwtpass")
         .contentType("application/json")

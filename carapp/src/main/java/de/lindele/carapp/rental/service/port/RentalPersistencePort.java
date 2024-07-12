@@ -22,7 +22,6 @@ public interface RentalPersistencePort {
 
   Page<Rental> getAllRentalsByCustomerId(Long customerId, Pageable pageable);
 
-
   Rental updateRental(Rental rental, Long id);
 
   // DELETE

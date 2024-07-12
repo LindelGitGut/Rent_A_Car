@@ -5,13 +5,11 @@ import de.lindele.carapp.rental.repository.mapper.RentalEntityMapper;
 import de.lindele.carapp.rental.repository.model.RentalEntity;
 import de.lindele.carapp.rental.service.model.Rental;
 import de.lindele.carapp.rental.service.port.RentalPersistencePort;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
-
-import java.util.Optional;
-
 
 @Repository
 @RequiredArgsConstructor
@@ -24,24 +22,21 @@ public class RentalRepositoryAdapter implements RentalPersistencePort {
   @Override
   public Rental createRental(Rental rental) {
     RentalEntity rentalEntity = rentalEntityMapper.map(rental);
-     return rentalEntityMapper.map(rentalRepository.save(rentalEntityMapper.map(rental))) ;
+    return rentalEntityMapper.map(rentalRepository.save(rentalEntityMapper.map(rental)));
   }
 
   @Override
   public Rental getRental(Long id) {
     Optional<RentalEntity> rentalEntity = rentalRepository.findById(id);
-    if (rentalEntity.isPresent()){
+    if (rentalEntity.isPresent()) {
       return rentalEntityMapper.map(rentalEntity.get());
-    }
-
-    else {
+    } else {
       throw new ResourceNotFoundException("Rental with id " + id + " not found");
     }
   }
 
   @Override
-  public Page<Rental> getAllRentals(Pageable pageable)
-  {
+  public Page<Rental> getAllRentals(Pageable pageable) {
     return rentalRepository.findAll(pageable).map(rentalEntityMapper::map);
   }
 
@@ -58,12 +53,11 @@ public class RentalRepositoryAdapter implements RentalPersistencePort {
   @Override
   public Rental updateRental(Rental rental, Long id) {
     Optional<RentalEntity> savedRentalEntity = rentalRepository.findById(id);
-    if (savedRentalEntity.isPresent()){
+    if (savedRentalEntity.isPresent()) {
       RentalEntity rentalEntity = rentalEntityMapper.map(rental);
       rentalEntity.setId(id);
       return rentalEntityMapper.map(rentalRepository.save(rentalEntity));
-    }
-    else {
+    } else {
       throw new ResourceNotFoundException("Rental with id " + id + " not found");
     }
   }
@@ -71,10 +65,9 @@ public class RentalRepositoryAdapter implements RentalPersistencePort {
   @Override
   public void deleteRental(Long id) {
     Optional<RentalEntity> rentalEntity = rentalRepository.findById(id);
-    if (rentalEntity.isPresent()){
+    if (rentalEntity.isPresent()) {
       rentalRepository.deleteById(id);
-    }
-    else {
+    } else {
       throw new ResourceNotFoundException("Rental with id " + id + " not found");
     }
   }

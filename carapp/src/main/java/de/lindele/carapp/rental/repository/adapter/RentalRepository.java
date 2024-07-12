@@ -7,12 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface RentalRepository extends JpaRepository<RentalEntity, Long> {
 
+  Page<RentalEntity> findAllByCarId(Long carId, Pageable pageable);
 
-    Page<RentalEntity> findAllByCarId(Long carId, Pageable pageable);
-
-    Page<RentalEntity> findAllByCustomerId(Long customerId, Pageable pageable);
-
-
-
-
+  Page<RentalEntity> findAllByCustomerId(Long customerId, Pageable pageable);
 }

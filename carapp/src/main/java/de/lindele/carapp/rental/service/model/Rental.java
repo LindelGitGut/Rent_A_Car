@@ -1,9 +1,8 @@
 package de.lindele.carapp.rental.service.model;
 
 import de.lindele.carapp.car.service.model.Car;
-import java.util.Date;
-
 import de.lindele.carapp.customer.service.model.Customer;
+import java.util.Date;
 import lombok.*;
 
 @Data
