@@ -4,6 +4,7 @@ import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.*;
 
 import de.lindele.carapp.car.controller.model.request.CreateCarRequest;
+import de.lindele.carapp.car.controller.model.request.UpdateCarRequest;
 import de.lindele.carapp.car.repository.adapter.CarRepository;
 import de.lindele.carapp.car.repository.model.CarEntity;
 import java.math.BigDecimal;
@@ -22,6 +23,7 @@ class CarControllerIntegrationTest {
   void setUp() {
     // Konfiguriert RestAssured, den dynamischen Port zu verwenden
     io.restassured.RestAssured.port = port;
+    carRepository.deleteAll();
   }
 
   @Autowired private CarRepository carRepository;
@@ -47,6 +49,7 @@ class CarControllerIntegrationTest {
         .post("/car")
         .then()
         .statusCode(201);
+
   }
 
   @Test
@@ -69,7 +72,6 @@ class CarControllerIntegrationTest {
         .then()
         .statusCode(200);
 
-    carRepository.delete(savedEntity);
   }
 
   @Test
@@ -102,10 +104,9 @@ class CarControllerIntegrationTest {
         .when()
         .get("/car")
         .then()
-        .statusCode(200);
+        .statusCode(200)
+                .body("content.size()", org.hamcrest.Matchers.equalTo(2));
 
-    carRepository.delete(carEntity1);
-    carRepository.delete(carEntity2);
   }
 
   @Test
@@ -122,8 +123,8 @@ class CarControllerIntegrationTest {
             .build();
     CarEntity savedEntity = carRepository.save(entity);
 
-    CreateCarRequest request =
-        CreateCarRequest.builder()
+    UpdateCarRequest request =
+        UpdateCarRequest.builder()
             .kilometer(1000)
             .pricePerKilometer(new BigDecimal("1.5"))
             .brand("brand")
@@ -141,7 +142,9 @@ class CarControllerIntegrationTest {
         .then()
         .statusCode(200);
 
-    carRepository.delete(savedEntity);
+    savedEntity = carRepository.findById(1L).get();
+
+
   }
 
   @Test
@@ -155,12 +158,13 @@ class CarControllerIntegrationTest {
             .model("model")
             .registrationNumber("registrationNumber")
             .build();
+
     CarEntity savedEntity = carRepository.save(entity);
 
     given()
         // .auth().oauth2("jwtpass")
         .when()
-        .delete("/car/1")
+        .delete("/car/" + savedEntity.getId())
         .then()
         .statusCode(204); // No Content
   }
