@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class CustomerService {
 
-  private CustomerPersistencePort customerPersistencePort;
+  private final CustomerPersistencePort customerPersistencePort;
 
   public Customer createCustomer(Customer customer) {
     return customerPersistencePort.saveCustomer(customer);

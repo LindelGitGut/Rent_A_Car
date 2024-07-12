@@ -149,10 +149,98 @@ class CustomerRepositoryAdapterTest {
   }
 
   @Test
-  void deleteCustomer() {}
+  void deleteCustomer() {
+
+    CustomerEntity customerEntity =
+        CustomerEntity.builder()
+            .id(1L)
+            .firstname("firstname")
+            .lastname("lastname")
+            .address("address")
+            .birthdate(new Date(2021, 1, 1))
+            .city("city")
+            .postalCode("postalCode")
+            .phoneNumber("phoneNumber")
+            .email("email")
+            .rentals(new ArrayList<RentalEntity>())
+            .build();
+
+    Mockito.when(customerRepository.findById(1L)).thenReturn(java.util.Optional.of(customerEntity));
+
+    customerRepositoryAdapter.deleteCustomer(1L);
+
+    Mockito.verify(customerRepository, Mockito.times(1)).delete(customerEntity);
+
+  }
 
   @Test
-  void findAllCustomer() {}
+  void findAllCustomer() {
+
+    CustomerEntity customerEntity1 =
+        CustomerEntity.builder()
+            .id(1L)
+            .firstname("firstname")
+            .lastname("lastname")
+            .address("address")
+            .birthdate(new Date(2021, 1, 1))
+            .city("city")
+            .postalCode("postalCode")
+            .phoneNumber("phoneNumber")
+            .email("email")
+            .rentals(new ArrayList<RentalEntity>())
+            .build();
+
+    CustomerEntity customerEntity2 =
+        CustomerEntity.builder()
+            .id(2L)
+            .firstname("firstname")
+            .lastname("lastname")
+            .address("address")
+            .birthdate(new Date(2021, 1, 1))
+            .city("city")
+            .postalCode("postalCode")
+            .phoneNumber("phoneNumber")
+            .email("email")
+            .rentals(new ArrayList<RentalEntity>())
+            .build();
+
+//    Mockito.when(customerRepository.findAll()).thenReturn(List.of(customerEntity1, customerEntity2));
+//
+//    Page<Customer> customers = customerRepositoryAdapter.findAllCustomer(Pageable.unpaged());
+//
+//    Mockito.verify(customerRepository, Mockito.times(1)).findAll();
+//    Mockito.verify(customerEntityMapper, Mockito.times(2)).map(Mockito.any(CustomerEntity.class));
+//    assertNotNull(customers);
+
+    Customer expectedCustomer1 =
+        Customer.builder()
+            .id(1L)
+            .firstname("firstname")
+            .lastname("lastname")
+            .address("address")
+            .birthdate(new Date(2021, 1, 1))
+            .city("city")
+            .postalCode("postalCode")
+            .phoneNumber("phoneNumber")
+            .email("email")
+            .build();
+
+    Customer expectedCustomer2 =
+        Customer.builder()
+            .id(2L)
+            .firstname("firstname")
+            .lastname("lastname")
+            .address("address")
+            .birthdate(new Date(2021, 1, 1))
+            .city("city")
+            .postalCode("postalCode")
+            .phoneNumber("phoneNumber")
+            .email("email")
+            .build();
+
+
+
+  }
 
   @Test
   void findAllCustomerByFirstName() {}

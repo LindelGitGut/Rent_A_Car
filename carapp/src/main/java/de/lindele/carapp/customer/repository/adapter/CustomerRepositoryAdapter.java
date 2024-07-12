@@ -15,8 +15,8 @@ import org.springframework.stereotype.Repository;
 @RequiredArgsConstructor
 public class CustomerRepositoryAdapter implements CustomerPersistencePort {
 
-  private CustomerRepository customerRepository;
-  private CustomerEntityMapper customerEntityMapper;
+  private final CustomerRepository customerRepository;
+  private final CustomerEntityMapper customerEntityMapper;
 
   @Override
   public Customer findCustomerById(Long id) {
