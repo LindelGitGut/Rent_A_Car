@@ -185,6 +185,7 @@ class CarRepositoryAdapterTest {
     assertNotNull(car);
     Mockito.verify(carRepository, Mockito.times(1)).findById(1L);
     Mockito.verify(carEntityMapper, Mockito.times(1)).map(carEntity);
+
     Car expectedCar =
         Car.builder()
             .id(1L)
@@ -195,6 +196,7 @@ class CarRepositoryAdapterTest {
             .drivenkilometers(50000)
             .pricePerKilometer(new BigDecimal("0.5"))
             .build();
+
     assertEquals(expectedCar, car);
   }
 
