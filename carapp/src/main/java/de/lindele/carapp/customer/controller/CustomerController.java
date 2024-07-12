@@ -25,13 +25,13 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 @RequiredArgsConstructor
 public class CustomerController {
 
-  private CustomerService customerService;
+  private final CustomerService customerService;
 
-  private CustomerWebModelMapper customerWebModelMapper;
+  private final CustomerWebModelMapper customerWebModelMapper;
 
-  private CreateCustomerRequestMapper createCustomerRequestMapper;
+  private final CreateCustomerRequestMapper createCustomerRequestMapper;
 
-  private UpdateCustomerRequestMapper updateCustomerRequestMapper;
+  private final UpdateCustomerRequestMapper updateCustomerRequestMapper;
 
   // TODO test CRUD-Endpoints
   // CREATE
