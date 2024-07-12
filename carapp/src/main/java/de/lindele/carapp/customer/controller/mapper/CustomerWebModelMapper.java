@@ -32,15 +32,27 @@ public class CustomerWebModelMapper {
   }
 
   public Customer map(CustomerWebModel customerWebModel) {
-    Customer customer = new Customer();
-    customer.setAddress(customerWebModel.getAddress());
-    customer.setCity(customerWebModel.getCity());
-    customer.setEmail(customerWebModel.getEmail());
-    customer.setFirstname(customerWebModel.getFirstname());
-    customer.setLastname(customerWebModel.getLastname());
-    customer.setPhoneNumber(customerWebModel.getPhoneNumber());
-    customer.setPostalCode(customerWebModel.getPostalCode());
-    customer.setBirthdate(new Date(customerWebModel.getBirthdate().getTime()));
-    return customer;
+
+    return Customer.builder()
+        .address(customerWebModel.getAddress())
+        .city(customerWebModel.getCity())
+        .email(customerWebModel.getEmail())
+        .firstname(customerWebModel.getFirstname())
+        .lastname(customerWebModel.getLastname())
+        .phoneNumber(customerWebModel.getPhoneNumber())
+        .postalCode(customerWebModel.getPostalCode())
+        .birthdate(new Date(customerWebModel.getBirthdate().getTime()))
+        .build();
+    //
+    //    Customer customer = new Customer();
+    //    customer.setAddress(customerWebModel.getAddress());
+    //    customer.setCity(customerWebModel.getCity());
+    //    customer.setEmail(customerWebModel.getEmail());
+    //    customer.setFirstname(customerWebModel.getFirstname());
+    //    customer.setLastname(customerWebModel.getLastname());
+    //    customer.setPhoneNumber(customerWebModel.getPhoneNumber());
+    //    customer.setPostalCode(customerWebModel.getPostalCode());
+    //    customer.setBirthdate(new Date(customerWebModel.getBirthdate().getTime()));
+    //    return customer;
   }
 }
