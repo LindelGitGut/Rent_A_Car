@@ -17,16 +17,28 @@ public class CreateCustomerRequestMapper {
   //    private String phoneNumber;
   //    private String email;
   public Customer map(CreateCustomerRequest createCustomerRequest) {
-    Customer customer = new Customer();
-    customer.setFirstname(createCustomerRequest.getFirstname());
-    customer.setLastname(createCustomerRequest.getLastname());
-    customer.setAddress(createCustomerRequest.getAddress());
-    customer.setBirthdate(createCustomerRequest.getBirthdate());
-    customer.setCity(createCustomerRequest.getCity());
-    customer.setPostalCode(createCustomerRequest.getPostalCode());
-    customer.setPhoneNumber(createCustomerRequest.getPhoneNumber());
-    customer.setEmail(createCustomerRequest.getEmail());
-    return customer;
+
+    return Customer.builder()
+        .firstname(createCustomerRequest.getFirstname())
+        .lastname(createCustomerRequest.getLastname())
+        .address(createCustomerRequest.getAddress())
+        .birthdate(createCustomerRequest.getBirthdate())
+        .city(createCustomerRequest.getCity())
+        .postalCode(createCustomerRequest.getPostalCode())
+        .phoneNumber(createCustomerRequest.getPhoneNumber())
+        .email(createCustomerRequest.getEmail())
+        .build();
+
+    //    Customer customer = new Customer();
+    //    customer.setFirstname(createCustomerRequest.getFirstname());
+    //    customer.setLastname(createCustomerRequest.getLastname());
+    //    customer.setAddress(createCustomerRequest.getAddress());
+    //    customer.setBirthdate(createCustomerRequest.getBirthdate());
+    //    customer.setCity(createCustomerRequest.getCity());
+    //    customer.setPostalCode(createCustomerRequest.getPostalCode());
+    //    customer.setPhoneNumber(createCustomerRequest.getPhoneNumber());
+    //    customer.setEmail(createCustomerRequest.getEmail());
+    //    return customer;
   }
 
   // TODO check if conversion in both direction is needed
