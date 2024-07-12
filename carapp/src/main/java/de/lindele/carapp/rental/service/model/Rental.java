@@ -7,7 +7,7 @@ import lombok.*;
 
 @Data
 @Builder
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class Rental {
   private Long id;
   private Customer customer;
