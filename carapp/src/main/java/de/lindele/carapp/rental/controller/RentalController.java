@@ -1,6 +1,10 @@
 package de.lindele.carapp.rental.controller;
 
+import de.lindele.carapp.rental.controller.mapper.CreateRentalRequestMapper;
+import de.lindele.carapp.rental.controller.mapper.RentalWebModelMapper;
+import de.lindele.carapp.rental.controller.mapper.UpdateRentalRequestMapper;
 import de.lindele.carapp.rental.controller.model.RentalWebModel;
+import de.lindele.carapp.rental.controller.model.request.CreateRentalRequest;
 import de.lindele.carapp.rental.service.RentalService;
 // import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
@@ -13,14 +17,24 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class RentalController {
 
-  private RentalService rentalService;
+  private final RentalService rentalService;
+
+  private final RentalWebModelMapper rentalWebModelMapper;
+
+  private final CreateRentalRequestMapper createRentalRequestMapper;
+
+  private final UpdateRentalRequestMapper updateRentalRequestMapper;
 
   // TODO Implement CRUD-Endpoints
   // CREATE
 
   @PostMapping
-  ResponseEntity<RentalWebModel> createRental(@RequestBody RentalWebModel rentalWebModel) {
-    // return ResponseEntity.ok(rentalService.createRental(rentalWebModel));
+  ResponseEntity<RentalWebModel> createRental(
+      @RequestBody CreateRentalRequest createRentalRequest) {
+
+    // Rental rental =
+
+    // return ResponseEntity.ok(rentalService.createRental(createRentalRequest));
     return null;
   }
 
