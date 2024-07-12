@@ -1,13 +1,11 @@
 package de.lindele.carapp.customer.service.model;
 
 import java.sql.Date;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-@Getter
-@Setter
-@NoArgsConstructor
+@Data
+@AllArgsConstructor
+@Builder
 public class Customer {
   private Long id;
   private String firstname;
