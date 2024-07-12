@@ -18,7 +18,7 @@ public class CarService {
   }
 
   public Page<Car> getAllCarsByBrand(String brand, Pageable pageable) {
-    return carPersistencePort.findCarByBrand(brand, pageable);
+    return carPersistencePort.findAllCarsByBrand(brand, pageable);
   }
 
   public Page<Car> getAllCarsByColor(String color, Pageable pageable) {

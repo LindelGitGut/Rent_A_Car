@@ -9,6 +9,7 @@ public class CarEntityMapper {
 
   public Car map(CarEntity carEntity) {
     Car car = new Car();
+    car.setId(carEntity.getId());
     car.setBrand(carEntity.getBrand());
     car.setModel(carEntity.getModel());
     car.setRegistrationNumber(carEntity.getRegistrationNumber());
@@ -20,6 +21,7 @@ public class CarEntityMapper {
 
   public CarEntity map(Car car) {
     CarEntity carEntity = new CarEntity();
+    carEntity.setId(car.getId());
     carEntity.setBrand(car.getBrand());
     carEntity.setModel(car.getModel());
     carEntity.setRegistrationNumber(car.getRegistrationNumber());

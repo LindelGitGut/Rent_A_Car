@@ -49,7 +49,6 @@ class CarControllerIntegrationTest {
         .post("/car")
         .then()
         .statusCode(201);
-
   }
 
   @Test
@@ -71,7 +70,6 @@ class CarControllerIntegrationTest {
         .get("/car/" + savedEntity.getId())
         .then()
         .statusCode(200);
-
   }
 
   @Test
@@ -105,8 +103,7 @@ class CarControllerIntegrationTest {
         .get("/car")
         .then()
         .statusCode(200)
-                .body("content.size()", org.hamcrest.Matchers.equalTo(2));
-
+        .body("content.size()", org.hamcrest.Matchers.equalTo(2));
   }
 
   @Test
@@ -143,8 +140,6 @@ class CarControllerIntegrationTest {
         .statusCode(200);
 
     savedEntity = carRepository.findById(1L).get();
-
-
   }
 
   @Test

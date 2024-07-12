@@ -13,7 +13,7 @@ public interface CarPersistencePort {
    * @param brand The brand of the car.
    * @return List of cars.
    */
-  Page<Car> findCarByBrand(String brand, Pageable pageable);
+  Page<Car> findAllCarsByBrand(String brand, Pageable pageable);
 
   /**
    * Find all cars.

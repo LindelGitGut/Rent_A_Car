@@ -5,8 +5,6 @@
 
 
 
--- Flyway migration script to create the Customer table
--- Filename: V002__create_customer_table.sql
 
 
 

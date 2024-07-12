@@ -8,7 +8,6 @@ import de.lindele.carapp.exception.ResourceNotFoundException;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
-import org.springframework.context.annotation.Bean;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
@@ -21,7 +20,7 @@ public class CarRepositoryAdapter implements CarPersistencePort {
   private final CarRepository carRepository;
   private final CarEntityMapper carEntityMapper;
 
-  public Page<Car> findCarByBrand(String brand, Pageable pageable) {
+  public Page<Car> findAllCarsByBrand(String brand, Pageable pageable) {
     return carRepository.findByBrand(brand, pageable).map(carEntityMapper::map);
   }
 
@@ -37,12 +36,12 @@ public class CarRepositoryAdapter implements CarPersistencePort {
 
   @Override
   public Page<Car> findAllCarsByColor(String color, Pageable pageable) {
-    return carRepository.findByColor(color, pageable).map(carEntityMapper::map);
+    return carRepository.findAllByColor(color, pageable).map(carEntityMapper::map);
   }
 
   @Override
   public Page<Car> findAllCarsByBrandAndColor(String brand, String color, Pageable pageable) {
-    return carRepository.findByBrandAndColor(brand, color, pageable).map(carEntityMapper::map);
+    return carRepository.findAllByBrandAndColor(brand, color, pageable).map(carEntityMapper::map);
   }
 
   @Override

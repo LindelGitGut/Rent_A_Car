@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 public interface CarRepository extends JpaRepository<CarEntity, Long> {
   Page<CarEntity> findByBrand(String brand, Pageable pageable);
 
-  Page<CarEntity> findByColor(String color, Pageable pageable);
+  Page<CarEntity> findAllByColor(String color, Pageable pageable);
 
   Optional<CarEntity> findById(Long id);
 
@@ -19,5 +19,5 @@ public interface CarRepository extends JpaRepository<CarEntity, Long> {
 
   Page<CarEntity> findAll(Pageable pageable);
 
-  Page<CarEntity> findByBrandAndColor(String brand, String color, Pageable pageable);
+  Page<CarEntity> findAllByBrandAndColor(String brand, String color, Pageable pageable);
 }

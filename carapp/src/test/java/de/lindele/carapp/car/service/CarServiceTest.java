@@ -48,11 +48,11 @@ class CarServiceTest {
 
     Pageable pageable = PageRequest.of(0, 10);
 
-    Mockito.when(carPersistencePort.findCarByBrand("brand", pageable)).thenReturn(carPage);
+    Mockito.when(carPersistencePort.findAllCarsByBrand("brand", pageable)).thenReturn(carPage);
 
     carService.getAllCarsByBrand("brand", pageable);
 
-    Mockito.verify(carPersistencePort, Mockito.times(1)).findCarByBrand("brand", pageable);
+    Mockito.verify(carPersistencePort, Mockito.times(1)).findAllCarsByBrand("brand", pageable);
   }
 
   @Test
