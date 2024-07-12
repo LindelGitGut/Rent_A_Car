@@ -18,6 +18,11 @@ public interface RentalPersistencePort {
 
   // UPDATE
 
+  Page<Rental> getAllRentalsByCarId(Long carId, Pageable pageable);
+
+  Page<Rental> getAllRentalsByCustomerId(Long customerId, Pageable pageable);
+
+
   Rental updateRental(Rental rental, Long id);
 
   // DELETE
