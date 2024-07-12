@@ -39,14 +39,6 @@ class CarControllerIntegrationTest {
             .registrationNumber("registrationNumber")
             .build();
 
-    //        CarEntity.builder()
-    //            .color("color")
-    //            .kilometer(100)
-    //            .pricePerKilometer(new BigDecimal(100))
-    //            .brand("brand")
-    //            .model("model")
-    //            .registrationNumber("registrationNumber")
-    //            .build();
 
     given()
         // .auth().oauth2("jwtpass")
