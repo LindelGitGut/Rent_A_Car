@@ -33,9 +33,9 @@ public class CarService {
     return carPersistencePort.findAllCars(pageable);
   }
 
-  public Car updateCar(Car car, Long id) {
+  public Car updateCar(Car car) {
 
-    return carPersistencePort.updateCar(car, id);
+    return carPersistencePort.updateCar(car);
   }
 
   public void deleteCar(Long id) {

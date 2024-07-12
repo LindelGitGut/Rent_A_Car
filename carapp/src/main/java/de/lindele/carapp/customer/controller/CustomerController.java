@@ -52,7 +52,7 @@ public class CustomerController {
   // READ
   @GetMapping("/{id}")
   ResponseEntity<CustomerWebModel> getCustomer(@PathVariable Long id) {
-    Customer customer = customerService.getCustomer(id);
+    Customer customer = customerService.getCustomerById(id);
     return ResponseEntity.ok(customerWebModelMapper.map(customer));
   }
 

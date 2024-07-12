@@ -89,7 +89,10 @@ public class CarController {
     // convert updateCarRequest to Car
     Car car = updateCarRequestMapper.map(updateCarRequest);
 
-    return ResponseEntity.ok(carWebModelMapper.map(carService.updateCar(car, id)));
+    // UpdateCarRequest doesent have an id, so we set it here
+    car.setId(id);
+
+    return ResponseEntity.ok(carWebModelMapper.map(carService.updateCar(car)));
   }
 
   // DELETE

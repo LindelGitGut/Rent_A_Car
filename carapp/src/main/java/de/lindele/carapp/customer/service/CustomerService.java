@@ -26,7 +26,7 @@ public class CustomerService {
     customerPersistencePort.deleteCustomer(id);
   }
 
-  public Customer getCustomer(Long id) {
+  public Customer getCustomerById(Long id) {
     return customerPersistencePort.findCustomerById(id);
   }
 
@@ -39,7 +39,7 @@ public class CustomerService {
   }
 
   public Page<Customer> getAllCustomersByLastName(String lastname, Pageable pageable) {
-    return customerPersistencePort.findAllCustomerByFirstName(lastname, pageable);
+    return customerPersistencePort.findAllCustomerByLastName(lastname, pageable);
   }
 
   public Page<Customer> getAllCustomersByFirstNameAndLastName(

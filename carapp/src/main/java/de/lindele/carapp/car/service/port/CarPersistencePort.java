@@ -62,7 +62,7 @@ public interface CarPersistencePort {
    * @param car The car to update.
    * @return The updated car.
    */
-  Car updateCar(Car car, Long id);
+  Car updateCar(Car car);
 
   /**
    * Delete a car.

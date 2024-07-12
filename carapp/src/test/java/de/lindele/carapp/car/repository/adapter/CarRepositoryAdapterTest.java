@@ -5,7 +5,9 @@ import static org.junit.jupiter.api.Assertions.*;
 import de.lindele.carapp.car.repository.mapper.CarEntityMapper;
 import de.lindele.carapp.car.repository.model.CarEntity;
 import de.lindele.carapp.car.service.model.Car;
+import de.lindele.carapp.rental.repository.model.RentalEntity;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -384,6 +386,7 @@ class CarRepositoryAdapterTest {
   void updateCar() {
     var car =
         Car.builder()
+            .id(1L)
             .brand("brand")
             .model("model")
             .color("color")
@@ -391,6 +394,53 @@ class CarRepositoryAdapterTest {
             .drivenkilometers(1000)
             .pricePerKilometer(new BigDecimal("1.5"))
             .build();
+
+    var oldCarEntity =
+        CarEntity.builder()
+            .id(1L)
+            .brand("oldBrand")
+            .color("oldColor")
+            .model("oldModel")
+            .registrationNumber("oldRegistrationNumber")
+            .kilometer(1000)
+            .pricePerKilometer(new BigDecimal("1.5"))
+            .rentals(new ArrayList<RentalEntity>())
+            .build();
+
+    var carEntity =
+        CarEntity.builder()
+            .id(1L)
+            .brand(car.getBrand())
+            .color(car.getColor())
+            .model(car.getModel())
+            .registrationNumber(car.getRegistrationNumber())
+            .kilometer(car.getDrivenkilometers())
+            .pricePerKilometer(car.getPricePerKilometer())
+            .rentals(new ArrayList<RentalEntity>())
+            .build();
+
+    Mockito.when(carRepository.findById(car.getId()))
+        .thenReturn(java.util.Optional.of(oldCarEntity));
+    Mockito.when(carRepository.save(carEntity)).thenReturn(carEntity);
+
+    var newCar = carRepositoryAdapter.updateCar(car);
+
+    Mockito.verify(carRepository, Mockito.times(1)).findById(car.getId());
+    Mockito.verify(carRepository, Mockito.times(1)).save(carEntity);
+    Mockito.verify(carEntityMapper, Mockito.times(1)).map(Mockito.any(CarEntity.class));
+
+    Car expectedCar =
+        Car.builder()
+            .id(1L)
+            .brand("brand")
+            .model("model")
+            .color("color")
+            .registrationNumber("registrationNumber")
+            .drivenkilometers(1000)
+            .pricePerKilometer(new BigDecimal("1.5"))
+            .build();
+
+    assertEquals(expectedCar, newCar);
   }
 
   @Test

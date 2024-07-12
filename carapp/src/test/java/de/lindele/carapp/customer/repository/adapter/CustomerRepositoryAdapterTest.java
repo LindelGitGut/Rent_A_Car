@@ -6,7 +6,8 @@ import de.lindele.carapp.customer.repository.mapper.CustomerEntityMapper;
 import de.lindele.carapp.customer.repository.model.CustomerEntity;
 import de.lindele.carapp.customer.service.model.Customer;
 import de.lindele.carapp.rental.repository.model.RentalEntity;
-import de.lindele.carapp.rental.service.model.Rental;
+import java.sql.Date;
+import java.util.ArrayList;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -15,25 +16,18 @@ import org.mockito.Mockito;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.sql.Date;
-import java.util.ArrayList;
-
 @ExtendWith(MockitoExtension.class)
 class CustomerRepositoryAdapterTest {
 
-
-  @Spy
-  private CustomerEntityMapper customerEntityMapper;
-  @Mock
-    private CustomerRepository customerRepository;
-    @InjectMocks
-    private CustomerRepositoryAdapter customerRepositoryAdapter;
-
+  @Spy private CustomerEntityMapper customerEntityMapper;
+  @Mock private CustomerRepository customerRepository;
+  @InjectMocks private CustomerRepositoryAdapter customerRepositoryAdapter;
 
   @Test
   void findCustomerById() {
 
-    CustomerEntity customerEntity = CustomerEntity.builder()
+    CustomerEntity customerEntity =
+        CustomerEntity.builder()
             .id(1L)
             .firstname("firstname")
             .lastname("lastname")
@@ -42,7 +36,8 @@ class CustomerRepositoryAdapterTest {
             .city("city")
             .postalCode("postalCode")
             .phoneNumber("phoneNumber")
-            .email("email").rentals(new ArrayList<RentalEntity>())
+            .email("email")
+            .rentals(new ArrayList<RentalEntity>())
             .build();
 
     Mockito.when(customerRepository.findById(1L)).thenReturn(java.util.Optional.of(customerEntity));
@@ -50,10 +45,11 @@ class CustomerRepositoryAdapterTest {
     Customer customer = customerRepositoryAdapter.findCustomerById(1L);
 
     Mockito.verify(customerRepository, Mockito.times(1)).findById(1L);
-    Mockito.verify(customerEntityMapper,Mockito.times(1)).map(customerEntity);
+    Mockito.verify(customerEntityMapper, Mockito.times(1)).map(customerEntity);
     assertNotNull(customer);
 
-    Customer expectedCustomer = Customer.builder()
+    Customer expectedCustomer =
+        Customer.builder()
             .id(1L)
             .firstname("firstname")
             .lastname("lastname")
@@ -68,11 +64,11 @@ class CustomerRepositoryAdapterTest {
     assertEquals(expectedCustomer, customer);
   }
 
-
   @Test
   void saveCustomer() {
 
-    var customer = Customer.builder()
+    var customer =
+        Customer.builder()
             .id(1L)
             .firstname("firstname")
             .lastname("lastname")
@@ -84,7 +80,8 @@ class CustomerRepositoryAdapterTest {
             .email("email")
             .build();
 
-    var customerEntity = CustomerEntity.builder()
+    var customerEntity =
+        CustomerEntity.builder()
             .id(1L)
             .firstname("firstname")
             .lastname("lastname")
@@ -93,12 +90,14 @@ class CustomerRepositoryAdapterTest {
             .city("city")
             .postalCode("postalCode")
             .phoneNumber("phoneNumber")
-            .email("email").rentals(new ArrayList<RentalEntity>())
+            .email("email")
+            .rentals(new ArrayList<RentalEntity>())
             .build();
 
-//Speichern des Repos simulieren
-    Mockito.when(customerRepository.save(customerEntity)).thenAnswer(invocation ->
-            {
+    // Speichern des Repos simulieren
+    Mockito.when(customerRepository.save(customerEntity))
+        .thenAnswer(
+            invocation -> {
               CustomerEntity entity = invocation.getArgument(0);
               entity.setId(1L);
               return entity;
@@ -110,13 +109,13 @@ class CustomerRepositoryAdapterTest {
 
     Mockito.verify(customerRepository, Mockito.times(1)).save(savedCustomer);
     Mockito.verify(customerEntityMapper, Mockito.times(1)).map(customer);
-
   }
 
   @Test
   void updateCustomer() {
 
-    Customer customer = Customer.builder()
+    Customer customer =
+        Customer.builder()
             .id(1L)
             .firstname("firstname")
             .lastname("lastname")
@@ -128,7 +127,8 @@ class CustomerRepositoryAdapterTest {
             .email("email")
             .build();
 
-    CustomerEntity customerEntity = CustomerEntity.builder()
+    CustomerEntity customerEntity =
+        CustomerEntity.builder()
             .id(1L)
             .firstname("firstname")
             .lastname("lastname")
@@ -143,9 +143,9 @@ class CustomerRepositoryAdapterTest {
 
     Mockito.when(customerRepository.save(customerEntity)).thenReturn(customerEntity);
 
-    customerRepositoryAdapter.updateCustomer(customer, 1L);
+    customerRepositoryAdapter.updateCustomer(customer);
 
-
+    Mockito.verify(customerRepository, Mockito.times(1)).findById(1L);
   }
 
   @Test

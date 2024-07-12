@@ -51,13 +51,18 @@ public class CarRepositoryAdapter implements CarPersistencePort {
   }
 
   @Override
-  public Car updateCar(Car car, Long id) {
-    Optional<CarEntity> savedCar = carRepository.findById(id);
+  public Car updateCar(Car car) {
+    Optional<CarEntity> savedCar = carRepository.findById(car.getId());
     if (savedCar.isPresent()) {
       CarEntity savedEntity = savedCar.get();
+      // Copy all properties from car to savedEntity except id
+      // Using Beanutils because mapper does copy all properties
       BeanUtils.copyProperties(car, savedEntity, "id");
-      return carEntityMapper.map(carRepository.save(savedEntity));
-    } else throw new ResourceNotFoundException("Car not found with id: " + id);
+      CarEntity updatedEntity = carRepository.save(savedEntity);
+      return carEntityMapper.map(updatedEntity);
+    } else {
+      throw new ResourceNotFoundException("Car not found with id: " + car.getId());
+    }
   }
 
   @Override

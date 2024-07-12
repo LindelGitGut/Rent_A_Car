@@ -12,27 +12,27 @@ public class CustomerEntityMapper {
 
     return CustomerEntity.builder()
         .id(customer.getId())
-            .firstname(customer.getFirstname())
-            .lastname(customer.getLastname())
+        .firstname(customer.getFirstname())
+        .lastname(customer.getLastname())
         .address(customer.getAddress())
         .city(customer.getCity())
         .postalCode(customer.getPostalCode())
         .birthdate(customer.getBirthdate())
         .email(customer.getEmail())
         .phoneNumber(customer.getPhoneNumber())
-            .build();
+        .build();
 
-//    CustomerEntity customerEntity = new CustomerEntity();
-//    customerEntity.setAddress(customer.getAddress());
-//    customerEntity.setBirthdate(customer.getBirthdate());
-//    customerEntity.setId(customer.getId());
-//    customerEntity.setEmail(customer.getEmail());
-//    customerEntity.setPhoneNumber(customer.getPhoneNumber());
-//    customerEntity.setFirstname(customer.getFirstname());
-//    customerEntity.setLastname(customer.getLastname());
-//    customerEntity.setPostalCode(customer.getPostalCode());
-//    customerEntity.setCity(customer.getCity());
-//    return customerEntity;
+    //    CustomerEntity customerEntity = new CustomerEntity();
+    //    customerEntity.setAddress(customer.getAddress());
+    //    customerEntity.setBirthdate(customer.getBirthdate());
+    //    customerEntity.setId(customer.getId());
+    //    customerEntity.setEmail(customer.getEmail());
+    //    customerEntity.setPhoneNumber(customer.getPhoneNumber());
+    //    customerEntity.setFirstname(customer.getFirstname());
+    //    customerEntity.setLastname(customer.getLastname());
+    //    customerEntity.setPostalCode(customer.getPostalCode());
+    //    customerEntity.setCity(customer.getCity());
+    //    return customerEntity;
   }
 
   public Customer map(CustomerEntity customerEntity) {

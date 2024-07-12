@@ -131,11 +131,11 @@ class CarServiceTest {
 
     Car car = Car.builder().id(1L).build();
 
-    Mockito.when(carPersistencePort.updateCar(car, car.getId())).thenReturn(car);
+    Mockito.when(carPersistencePort.updateCar(car)).thenReturn(car);
 
-    carService.updateCar(car, 1L);
+    carService.updateCar(car);
 
-    Mockito.verify(carPersistencePort, Mockito.times(1)).updateCar(car, 1L);
+    Mockito.verify(carPersistencePort, Mockito.times(1)).updateCar(car);
   }
 
   @Test
