@@ -23,16 +23,29 @@ public class CustomerEntityMapper {
   }
 
   public Customer map(CustomerEntity customerEntity) {
-    Customer customer = new Customer();
-    customer.setId(customerEntity.getId());
-    customer.setAddress(customerEntity.getAddress());
-    customer.setCity(customerEntity.getCity());
-    customer.setPostalCode(customerEntity.getPostalCode());
-    customer.setBirthdate(customerEntity.getBirthdate());
-    customer.setEmail(customerEntity.getEmail());
-    customer.setPhoneNumber(customerEntity.getPhoneNumber());
-    customer.setFirstname(customerEntity.getFirstname());
-    customer.setLastname(customerEntity.getLastname());
-    return customer;
+
+    return Customer.builder()
+        .id(customerEntity.getId())
+        .address(customerEntity.getAddress())
+        .city(customerEntity.getCity())
+        .postalCode(customerEntity.getPostalCode())
+        .birthdate(customerEntity.getBirthdate())
+        .email(customerEntity.getEmail())
+        .phoneNumber(customerEntity.getPhoneNumber())
+        .firstname(customerEntity.getFirstname())
+        .lastname(customerEntity.getLastname())
+        .build();
+
+    //    Customer customer = new Customer();
+    //    customer.setId(customerEntity.getId());
+    //    customer.setAddress(customerEntity.getAddress());
+    //    customer.setCity(customerEntity.getCity());
+    //    customer.setPostalCode(customerEntity.getPostalCode());
+    //    customer.setBirthdate(customerEntity.getBirthdate());
+    //    customer.setEmail(customerEntity.getEmail());
+    //    customer.setPhoneNumber(customerEntity.getPhoneNumber());
+    //    customer.setFirstname(customerEntity.getFirstname());
+    //    customer.setLastname(customerEntity.getLastname());
+    //    return customer;
   }
 }
