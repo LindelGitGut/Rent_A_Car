@@ -19,6 +19,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
+
+/**
+ * Controller for car operations.
+ */
 @RestController
 @RequestMapping("/car")
 @Tag(name = "Car Management", description = "APIs for managing Cars")
@@ -33,10 +37,14 @@ public class CarController {
 
   private final UpdateCarRequestMapper updateCarRequestMapper;
 
-  // TODO Implement and extend CRUD-Endpoints
   // CREATE
 
-  // Funktioniert
+ /**
+   * Create a car.
+   *
+   * @param createCarRequest The car to create.
+   * @return The created car.
+   */
   @PostMapping
   ResponseEntity<CarWebModel> createCar(@RequestBody CreateCarRequest createCarRequest) {
     // convert CarWebModel to Car
@@ -47,14 +55,25 @@ public class CarController {
   }
 
   // READ
-
-  // Funktioniert
+  /**
+   * Get a car by id.
+   *
+   * @param id The id of the car.
+   * @return The car.
+   */
   @GetMapping("/{id}")
   ResponseEntity<CarWebModel> getCar(@PathVariable Long id) {
     return ResponseEntity.ok(carWebModelMapper.map(carService.getCarById(id)));
   }
 
-  // Funktioniert?
+  /**
+   * Get all cars.
+   *
+   * @param brand The brand of the car.
+   * @param color The color of the car.
+   * @param pageable The paged car information.
+   * @return List of cars.
+   */
   @GetMapping
   ResponseEntity<Page<CarWebModel>> getAllCars(
       @RequestParam(required = false) String brand,
@@ -83,6 +102,13 @@ public class CarController {
   }
 
   // UPDATE
+  /**
+   * Update a car.
+   *
+   * @param updateCarRequest The car to update.
+   * @param id The id of the car.
+   * @return The updated car.
+   */
   @PutMapping("/{id}")
   ResponseEntity<CarWebModel> updateCar(
       @RequestBody UpdateCarRequest updateCarRequest, @PathVariable Long id) {
@@ -96,6 +122,13 @@ public class CarController {
     return ResponseEntity.ok(carWebModelMapper.map(carService.updateCar(car)));
   }
 
+  /**
+   * Update a car.
+   *
+   * @param updateCarRequest The car to update.
+   * @param id The id of the car.
+   * @return The updated car.
+   */
   // DELETE
   @DeleteMapping("/{id}")
   ResponseEntity<CarWebModel> deleteCar(@PathVariable Long id) {
