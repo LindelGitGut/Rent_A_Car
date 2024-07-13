@@ -17,6 +17,7 @@ public class RentalWebModelMapper {
   public RentalWebModel map(Rental rental) {
 
     return RentalWebModel.builder()
+        .rentalNumber(rental.getId())
         .car(carWebModelMapper.map(rental.getCar()))
         .customer(customerWebModelMapper.map(rental.getCustomer()))
         .startDate(rental.getRentalDate())

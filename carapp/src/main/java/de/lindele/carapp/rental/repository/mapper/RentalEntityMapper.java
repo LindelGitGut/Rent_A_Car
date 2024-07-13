@@ -20,24 +20,31 @@ public class RentalEntityMapper {
 
   public Rental map(RentalEntity rentalEntity) {
 
-    return Rental.builder()
+    Rental rental = Rental.builder()
         .id(rentalEntity.getId())
         .car(carEntityMapper.map(rentalEntity.getCar()))
         .rentalDate(rentalEntity.getRentalStart())
         .returnDate(rentalEntity.getRentalEnd())
             // new rental entity has no kilometers driven therefore set null to 0
-        .kilometers(rentalEntity.getKilometersDriven() == null ? 0 : rentalEntity.getKilometersDriven())
+        .kilometers(rentalEntity.getKilometersDriven())
         .customer(customerEntityMapper.map(rentalEntity.getCustomer()))
         .build();
+
+    return rental;
   }
 
   public RentalEntity map(Rental rental) {
-    return RentalEntity.builder()
+
+
+    RentalEntity rentalEntity= RentalEntity.builder()
         .id(rental.getId())
-        .car(CarEntity.builder().id(rental.getCar().getId()).build())
+        .car(carEntityMapper.map(rental.getCar()))
+        .customer(customerEntityMapper.map(rental.getCustomer()))
         .rentalStart(rental.getRentalDate())
         .rentalEnd(rental.getReturnDate())
-        .kilometersDriven(rental.getKilometers())
+        .kilometersDriven(rental.getKilometers() == null ? 0 : rental.getKilometers())
         .build();
+
+    return rentalEntity;
   }
 }
