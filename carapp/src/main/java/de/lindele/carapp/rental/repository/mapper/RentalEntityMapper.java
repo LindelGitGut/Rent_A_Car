@@ -25,7 +25,8 @@ public class RentalEntityMapper {
         .car(carEntityMapper.map(rentalEntity.getCar()))
         .rentalDate(rentalEntity.getRentalStart())
         .returnDate(rentalEntity.getRentalEnd())
-        .kilometers(rentalEntity.getKilometersDriven())
+            // new rental entity has no kilometers driven therefore set null to 0
+        .kilometers(rentalEntity.getKilometersDriven() == null ? 0 : rentalEntity.getKilometersDriven())
         .customer(customerEntityMapper.map(rentalEntity.getCustomer()))
         .build();
   }

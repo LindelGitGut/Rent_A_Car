@@ -31,5 +31,5 @@ public class RentalEntity {
   @Temporal(TemporalType.DATE)
   private Date rentalEnd;
 
-  private int kilometersDriven;
+  private Integer kilometersDriven;
 }
