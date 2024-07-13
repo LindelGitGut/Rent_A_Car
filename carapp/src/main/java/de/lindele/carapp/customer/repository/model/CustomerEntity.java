@@ -12,6 +12,8 @@ import lombok.*;
 @Builder(toBuilder = true)
 @NoArgsConstructor
 @Table(name = "customer")
+
+//TODO Adressdaten müssen eigentlich in eine eigne Tabelle ausgelagert werden um 3NF zu gewährleisten
 public class CustomerEntity {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)

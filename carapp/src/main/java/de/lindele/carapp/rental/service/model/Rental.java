@@ -14,5 +14,5 @@ public class Rental {
   private Car car;
   private Date rentalDate;
   private Date returnDate;
-  private Integer kilometers;
+  private Integer kilometerDriven;
 }

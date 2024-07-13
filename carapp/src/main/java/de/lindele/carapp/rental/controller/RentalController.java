@@ -6,6 +6,7 @@ import de.lindele.carapp.rental.controller.model.request.CreateRentalRequest;
 import de.lindele.carapp.rental.controller.model.request.UpdateRentalRequest;
 import de.lindele.carapp.rental.service.RentalService;
 // import io.swagger.annotations.Api;
+import de.lindele.carapp.rental.service.model.Rental;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -45,17 +46,25 @@ public class RentalController {
   }
 
   // UPDATE
-  @PutMapping
+  @PutMapping("/{id}")
   ResponseEntity<RentalWebModel> updateRental(
-      @RequestBody UpdateRentalRequest updateRentalRequest) {
-    // return ResponseEntity.ok(rentalService.updateRental(rentalWebModel));
-    return null;
+          @PathVariable Long id,
+      @RequestBody @Validated UpdateRentalRequest updateRentalRequest) {
+
+    return ResponseEntity.ok(rentalWebModelMapper.map(rentalService.updateRental(
+            id,
+            updateRentalRequest.getKilometersDriven(),
+            updateRentalRequest.getStartDate(),
+            updateRentalRequest.getEndDate(),
+            updateRentalRequest.getCarId(),
+            updateRentalRequest.getUserId())
+    ));
   }
 
   // DELETE
-  @DeleteMapping
-  ResponseEntity<RentalWebModel> deleteRental(@PathVariable Long id) {
-    // return ResponseEntity.ok(rentalService.deleteRental(id));
-    return null;
+  @DeleteMapping("/{id}")
+  ResponseEntity<Void> deleteRental(@PathVariable Long id) {
+    rentalService.deleteRental(id);
+    return ResponseEntity.noContent().build();
   }
 }

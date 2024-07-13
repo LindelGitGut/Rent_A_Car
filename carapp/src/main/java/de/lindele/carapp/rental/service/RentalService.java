@@ -26,10 +26,11 @@ public class RentalService {
     if (rentalPersistencePort.existsByCarIdAndDateRange(carId, startDate, endDate)) {
       throw new CarAlreadyRentedException("Car is already rented in this date range");
     }
-
+    // Check if car and customer exist
     Car car = carPersistencePort.findCarById(carId);
     Customer customer = customerPersistencePort.findCustomerById(customerId);
 
+    //create Rental Object
     Rental rental =
         Rental.builder()
             .car(car)
@@ -37,6 +38,7 @@ public class RentalService {
             .rentalDate(startDate)
             .returnDate(endDate)
             .build();
+
     return rentalPersistencePort.createRental(rental);
   }
 
@@ -56,8 +58,25 @@ public class RentalService {
     return rentalPersistencePort.getAllRentalsByCustomerId(customerId, pageable);
   }
 
-  public Rental updateRental(Rental rental, Long id) {
-    return rentalPersistencePort.updateRental(rental, id);
+  public Rental updateRental(Long rentalId, Integer kilometersDriven, Date startDate, Date endDate, Long carId, Long customerId) {
+
+
+    // Check if car and customer exist
+    Car car = carPersistencePort.findCarById(carId);
+    Customer customer = customerPersistencePort.findCustomerById(customerId);
+
+    //create Rental Object
+    Rental rental =
+            Rental.builder()
+                    .id(rentalId)
+                    .car(car)
+                    .customer(customer)
+                    .rentalDate(startDate)
+                    .returnDate(endDate)
+                    .kilometerDriven(kilometersDriven)
+                    .build();
+
+    return rentalPersistencePort.updateRental(rental, rentalId);
   }
 
   public void deleteRental(Long id) {

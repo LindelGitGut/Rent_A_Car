@@ -74,10 +74,27 @@ public class RentalRepositoryAdapter implements RentalPersistencePort {
 
   @Override
   public Rental updateRental(Rental rental, Long id) {
-    Optional<RentalEntity> savedRentalEntity = rentalRepository.findById(id);
-    if (savedRentalEntity.isPresent()) {
+    Optional<RentalEntity> optRentalEntity = rentalRepository.findById(id);
+    if (optRentalEntity.isPresent()) {
+
+      //Creating Proxy Object to minimize DB Calls (if Customer or Car is already existing is called in Service Layer)
+      CarEntity carProxy = entityManager.getReference(CarEntity.class, rental.getCar().getId());
+      CustomerEntity customerProxy = entityManager.getReference(CustomerEntity.class, rental.getCustomer().getId());
+
       RentalEntity rentalEntity = rentalEntityMapper.map(rental);
-      rentalEntity.setId(id);
+
+      //Get the saved RentalEntity
+      RentalEntity savedRentalEntity = optRentalEntity.get();
+
+      savedRentalEntity = rentalEntity;
+
+        //Update the saved RentalEntity
+        savedRentalEntity.setCar(carProxy);
+        savedRentalEntity.setCustomer(customerProxy);
+        savedRentalEntity.setRentalStart(rental.getRentalDate());
+        savedRentalEntity.setRentalEnd(rental.getReturnDate());
+        savedRentalEntity.setKilometersDriven(rental.getKilometerDriven());
+
       return rentalEntityMapper.map(rentalRepository.save(rentalEntity));
     } else {
       throw new ResourceNotFoundException("Rental with id " + id + " not found");

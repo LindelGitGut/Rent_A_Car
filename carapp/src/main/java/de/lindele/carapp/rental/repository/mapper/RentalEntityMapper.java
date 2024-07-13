@@ -1,7 +1,6 @@
 package de.lindele.carapp.rental.repository.mapper;
 
 import de.lindele.carapp.car.repository.mapper.CarEntityMapper;
-import de.lindele.carapp.car.repository.model.CarEntity;
 import de.lindele.carapp.customer.repository.mapper.CustomerEntityMapper;
 import de.lindele.carapp.rental.repository.model.RentalEntity;
 import de.lindele.carapp.rental.service.model.Rental;
@@ -26,7 +25,7 @@ public class RentalEntityMapper {
         .rentalDate(rentalEntity.getRentalStart())
         .returnDate(rentalEntity.getRentalEnd())
             // new rental entity has no kilometers driven therefore set null to 0
-        .kilometers(rentalEntity.getKilometersDriven())
+        .kilometerDriven(rentalEntity.getKilometersDriven())
         .customer(customerEntityMapper.map(rentalEntity.getCustomer()))
         .build();
 
@@ -42,7 +41,7 @@ public class RentalEntityMapper {
         .customer(customerEntityMapper.map(rental.getCustomer()))
         .rentalStart(rental.getRentalDate())
         .rentalEnd(rental.getReturnDate())
-        .kilometersDriven(rental.getKilometers() == null ? 0 : rental.getKilometers())
+        .kilometersDriven(rental.getKilometerDriven() == null ? 0 : rental.getKilometerDriven())
         .build();
 
     return rentalEntity;

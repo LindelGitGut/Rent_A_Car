@@ -22,7 +22,7 @@ public class RentalWebModelMapper {
         .customer(customerWebModelMapper.map(rental.getCustomer()))
         .startDate(rental.getRentalDate())
         .returnDate(rental.getReturnDate())
-        .kilometersDriven(rental.getKilometers())
+        .kilometersDriven(rental.getKilometerDriven())
         .build();
   }
 }
