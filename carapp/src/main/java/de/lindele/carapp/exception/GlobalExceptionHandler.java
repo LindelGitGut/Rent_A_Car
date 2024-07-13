@@ -19,6 +19,14 @@ public class GlobalExceptionHandler {
     return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
   }
 
+  @ExceptionHandler(CarAlreadyRentedException.class)
+  public ResponseEntity<?> handleCarAlreadyRentedException(
+      CarAlreadyRentedException ex, WebRequest request) {
+    ErrorDetails errorDetails =
+        new ErrorDetails(new Date(), ex.getMessage(), request.getDescription(false));
+    return new ResponseEntity<>(errorDetails, HttpStatus.CONFLICT);
+  }
+
   // Beispiel für das Handhaben einer allgemeinen Ausnahme
   @ExceptionHandler(Exception.class)
   public ResponseEntity<?> handleGlobalException(Exception ex, WebRequest request) {

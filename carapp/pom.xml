@@ -51,12 +51,13 @@
             <version>2.43.0</version>
         </dependency>
 
-        <!-- Springfox Swagger -->
-        <!--		<dependency>-->
-        <!--			<groupId>io.springfox</groupId>-->
-        <!--			<artifactId>springfox-boot-starter</artifactId>-->
-        <!--			<version>3.0.0</version>-->
-        <!--		</dependency>-->
+        <!-- Springdoc OpenAPI Starter WebMvc UI -->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+            <version>2.1.0</version>
+            <!-- Stellen Sie sicher, dass dies die neueste Version ist -->
+        </dependency>
 
         <!-- https://mvnrepository.com/artifact/io.rest-assured/rest-assured -->
         <dependency>

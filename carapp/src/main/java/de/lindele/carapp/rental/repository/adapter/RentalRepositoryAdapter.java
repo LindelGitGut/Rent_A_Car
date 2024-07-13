@@ -5,6 +5,7 @@ import de.lindele.carapp.rental.repository.mapper.RentalEntityMapper;
 import de.lindele.carapp.rental.repository.model.RentalEntity;
 import de.lindele.carapp.rental.service.model.Rental;
 import de.lindele.carapp.rental.service.port.RentalPersistencePort;
+import java.sql.Date;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -33,6 +34,11 @@ public class RentalRepositoryAdapter implements RentalPersistencePort {
     } else {
       throw new ResourceNotFoundException("Rental with id " + id + " not found");
     }
+  }
+
+  @Override
+  public boolean existsByCarIdAndDateRange(Long carId, Date startDate, Date endDate) {
+    return rentalRepository.existsByCarIdAndDateRange(carId, startDate, endDate);
   }
 
   @Override

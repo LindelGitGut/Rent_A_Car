@@ -10,6 +10,7 @@ import lombok.*;
 @Data
 @AllArgsConstructor
 @Builder(toBuilder = true)
+@NoArgsConstructor
 @Table(name = "customer")
 public class CustomerEntity {
   @Id

@@ -9,6 +9,7 @@ import de.lindele.carapp.customer.controller.model.request.UpdateCustomerRequest
 import de.lindele.carapp.customer.service.CustomerService;
 // import io.swagger.annotations.Api;
 import de.lindele.carapp.customer.service.model.Customer;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import java.net.URI;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -21,7 +22,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController
 @RequestMapping("/customer")
-// @Api(value = "Customer Management System")
+@Tag(name = "Customer Management", description = "APIs for managing Customers")
 @RequiredArgsConstructor
 public class CustomerController {
 

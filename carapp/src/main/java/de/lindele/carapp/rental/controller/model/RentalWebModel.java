@@ -1,31 +1,24 @@
 package de.lindele.carapp.rental.controller.model;
 
-import de.lindele.carapp.car.service.model.Car;
-import jakarta.persistence.*;
+import de.lindele.carapp.car.controller.model.CarWebModel;
+import de.lindele.carapp.customer.controller.model.CustomerWebModel;
 import jakarta.validation.constraints.NotNull;
 import java.util.Date;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-@AllArgsConstructor
-@Getter
-@Setter
-@NoArgsConstructor
+@Data
+@Builder
 public class RentalWebModel {
 
   @NotNull private Long rentalNumber;
 
-  //    @NotNull
-  //    @NotBlank
-  //    private String customerName;
+  @NotNull private CustomerWebModel customer;
 
-  @NotNull private Car car;
+  @NotNull private CarWebModel car;
 
-  @NotNull private Date rentalDate;
+  @NotNull private Date startDate;
 
-  @NotNull private Date returnDate;
+  private Date returnDate;
 
-  @NotNull private int rentalKilometers;
+  @NotNull private int kilometersDriven;
 }

@@ -1,6 +1,7 @@
 package de.lindele.carapp.rental.service.port;
 
 import de.lindele.carapp.rental.service.model.Rental;
+import java.sql.Date;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -13,6 +14,9 @@ public interface RentalPersistencePort {
   // READ
 
   Rental getRental(Long id);
+
+  // check if a car is already rented in a given date range
+  boolean existsByCarIdAndDateRange(Long carId, Date startDate, Date endDate);
 
   Page<Rental> getAllRentals(Pageable pageable);
 

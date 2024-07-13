@@ -23,9 +23,9 @@ public class RentalEntityMapper {
     return Rental.builder()
         .id(rentalEntity.getId())
         .car(carEntityMapper.map(rentalEntity.getCar()))
-        .rentalDate(rentalEntity.getRentalDate())
-        .returnDate(rentalEntity.getReturnDate())
-        .kilometers(rentalEntity.getKilometers())
+        .rentalDate(rentalEntity.getRentalStart())
+        .returnDate(rentalEntity.getRentalEnd())
+        .kilometers(rentalEntity.getKilometersDriven())
         .customer(customerEntityMapper.map(rentalEntity.getCustomer()))
         .build();
   }
@@ -34,9 +34,9 @@ public class RentalEntityMapper {
     return RentalEntity.builder()
         .id(rental.getId())
         .car(CarEntity.builder().id(rental.getCar().getId()).build())
-        .rentalDate(rental.getRentalDate())
-        .returnDate(rental.getReturnDate())
-        .kilometers(rental.getKilometers())
+        .rentalStart(rental.getRentalDate())
+        .rentalEnd(rental.getReturnDate())
+        .kilometersDriven(rental.getKilometers())
         .build();
   }
 }

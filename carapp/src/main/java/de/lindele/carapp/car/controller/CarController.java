@@ -9,6 +9,7 @@ import de.lindele.carapp.car.controller.model.request.CreateCarRequest;
 import de.lindele.carapp.car.controller.model.request.UpdateCarRequest;
 import de.lindele.carapp.car.service.CarService;
 import de.lindele.carapp.car.service.model.Car;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,7 +21,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/car")
-// @Api(value = "Car Management System")
+@Tag(name = "Car Management", description = "APIs for managing Cars")
 @RequiredArgsConstructor
 public class CarController {
 

@@ -19,8 +19,6 @@ public class CreateCustomerRequestMapper {
         .phoneNumber(createCustomerRequest.getPhoneNumber())
         .email(createCustomerRequest.getEmail())
         .build();
-
-
   }
 
   // TODO check if conversion in both direction is needed

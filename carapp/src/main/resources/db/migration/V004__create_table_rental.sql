@@ -1,14 +1,14 @@
-CREATE TABLE IF NOT EXISTS RENTAL (
+CREATE TABLE IF NOT EXISTS rental (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     customer_id BIGINT NOT NULL,
     car_id BIGINT NOT NULL,
-    rental_date DATE NOT NULL,
-    return_date DATE,
-    kilometers INT NOT NULL,
-    CONSTRAINT fk_customer
+    rental_start DATE NOT NULL,
+    rental_end DATE NOT NULL,
+    kilometers_driven INT NOT NULL,
+    CONSTRAINT fk_rental_customer
         FOREIGN KEY (customer_id)
-        REFERENCES CUSTOMER(id),
-    CONSTRAINT fk_car
+        REFERENCES customer(id),
+    CONSTRAINT fk_rental_car
         FOREIGN KEY (car_id)
-        REFERENCES CAR(id)
+        REFERENCES car(id)
 );

@@ -11,7 +11,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder(toBuilder = true)
-@Table(name = "RENTAL")
+@Table(name = "Rental")
 public class RentalEntity {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,10 +26,10 @@ public class RentalEntity {
   private CarEntity car;
 
   @Temporal(TemporalType.DATE)
-  private Date rentalDate;
+  private Date rentalStart;
 
   @Temporal(TemporalType.DATE)
-  private Date returnDate;
+  private Date rentalEnd;
 
-  private int kilometers;
+  private int kilometersDriven;
 }

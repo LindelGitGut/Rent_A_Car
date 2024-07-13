@@ -1,19 +1,20 @@
 package de.lindele.carapp.rental.controller;
 
-import de.lindele.carapp.rental.controller.mapper.CreateRentalRequestMapper;
 import de.lindele.carapp.rental.controller.mapper.RentalWebModelMapper;
-import de.lindele.carapp.rental.controller.mapper.UpdateRentalRequestMapper;
 import de.lindele.carapp.rental.controller.model.RentalWebModel;
 import de.lindele.carapp.rental.controller.model.request.CreateRentalRequest;
+import de.lindele.carapp.rental.controller.model.request.UpdateRentalRequest;
 import de.lindele.carapp.rental.service.RentalService;
 // import io.swagger.annotations.Api;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/rental")
-// @Api(value = "Rental Management System")
+@Tag(name = "Rental Management", description = "APIs for managing Rentals")
 @RequiredArgsConstructor
 public class RentalController {
 
@@ -21,33 +22,32 @@ public class RentalController {
 
   private final RentalWebModelMapper rentalWebModelMapper;
 
-  private final CreateRentalRequestMapper createRentalRequestMapper;
-
-  private final UpdateRentalRequestMapper updateRentalRequestMapper;
-
   // TODO Implement CRUD-Endpoints
   // CREATE
 
   @PostMapping
   ResponseEntity<RentalWebModel> createRental(
-      @RequestBody CreateRentalRequest createRentalRequest) {
+      @RequestBody @Validated CreateRentalRequest createRentalRequest) {
 
-    // Rental rental =
-
-    // return ResponseEntity.ok(rentalService.createRental(createRentalRequest));
-    return null;
+    return ResponseEntity.ok(
+        rentalWebModelMapper.map(
+            rentalService.createRental(
+                createRentalRequest.getStartDate(),
+                createRentalRequest.getEndDate(),
+                createRentalRequest.getCarId(),
+                createRentalRequest.getUserId())));
   }
 
   // READ
-  @GetMapping
+  @GetMapping("/{id}")
   ResponseEntity<RentalWebModel> getRental(@PathVariable Long id) {
-    // return ResponseEntity.ok(rentalService.getRental(id));
-    return null;
+    return ResponseEntity.ok(rentalWebModelMapper.map(rentalService.getRental(id)));
   }
 
   // UPDATE
   @PutMapping
-  ResponseEntity<RentalWebModel> updateRental(@RequestBody RentalWebModel rentalWebModel) {
+  ResponseEntity<RentalWebModel> updateRental(
+      @RequestBody UpdateRentalRequest updateRentalRequest) {
     // return ResponseEntity.ok(rentalService.updateRental(rentalWebModel));
     return null;
   }

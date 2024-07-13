@@ -170,7 +170,6 @@ class CustomerRepositoryAdapterTest {
     customerRepositoryAdapter.deleteCustomer(1L);
 
     Mockito.verify(customerRepository, Mockito.times(1)).delete(customerEntity);
-
   }
 
   @Test
@@ -204,13 +203,15 @@ class CustomerRepositoryAdapterTest {
             .rentals(new ArrayList<RentalEntity>())
             .build();
 
-//    Mockito.when(customerRepository.findAll()).thenReturn(List.of(customerEntity1, customerEntity2));
-//
-//    Page<Customer> customers = customerRepositoryAdapter.findAllCustomer(Pageable.unpaged());
-//
-//    Mockito.verify(customerRepository, Mockito.times(1)).findAll();
-//    Mockito.verify(customerEntityMapper, Mockito.times(2)).map(Mockito.any(CustomerEntity.class));
-//    assertNotNull(customers);
+    //    Mockito.when(customerRepository.findAll()).thenReturn(List.of(customerEntity1,
+    // customerEntity2));
+    //
+    //    Page<Customer> customers = customerRepositoryAdapter.findAllCustomer(Pageable.unpaged());
+    //
+    //    Mockito.verify(customerRepository, Mockito.times(1)).findAll();
+    //    Mockito.verify(customerEntityMapper,
+    // Mockito.times(2)).map(Mockito.any(CustomerEntity.class));
+    //    assertNotNull(customers);
 
     Customer expectedCustomer1 =
         Customer.builder()
@@ -237,9 +238,6 @@ class CustomerRepositoryAdapterTest {
             .phoneNumber("phoneNumber")
             .email("email")
             .build();
-
-
-
   }
 
   @Test

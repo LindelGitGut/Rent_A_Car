@@ -1,19 +1,27 @@
 package de.lindele.carapp.rental.controller.mapper;
 
+import de.lindele.carapp.car.controller.mapper.CarWebModelMapper;
+import de.lindele.carapp.customer.controller.mapper.CustomerWebModelMapper;
 import de.lindele.carapp.rental.controller.model.RentalWebModel;
 import de.lindele.carapp.rental.service.model.Rental;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
+@RequiredArgsConstructor
 public class RentalWebModelMapper {
 
-  RentalWebModel map(Rental rental) {
-    RentalWebModel rentalWebModel = new RentalWebModel();
-    rentalWebModel.setRentalNumber(rental.getId());
-    rentalWebModel.setCar(rental.getCar());
-    rentalWebModel.setRentalDate(rental.getRentalDate());
-    rentalWebModel.setReturnDate(rental.getReturnDate());
-    rentalWebModel.setRentalKilometers(rental.getKilometers());
-    return rentalWebModel;
+  private final CarWebModelMapper carWebModelMapper;
+  private final CustomerWebModelMapper customerWebModelMapper;
+
+  public RentalWebModel map(Rental rental) {
+
+    return RentalWebModel.builder()
+        .car(carWebModelMapper.map(rental.getCar()))
+        .customer(customerWebModelMapper.map(rental.getCustomer()))
+        .startDate(rental.getRentalDate())
+        .returnDate(rental.getReturnDate())
+        .kilometersDriven(rental.getKilometers())
+        .build();
   }
 }
