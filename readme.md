@@ -2,9 +2,9 @@
 
 Prerequisites:
 
-JDK 21: [Download JDK 21](https://www.oracle.com/java/technologies/javase/jdk21-archive-downloads.html)
-Apache Maven 3.6.0 oder höher: [Download Maven](https://maven.apache.org/download.cgi)
-Git: [Download Git](https://git-scm.com/downloads)
+- JDK 21: [Download JDK 21](https://www.oracle.com/java/technologies/javase/jdk21-archive-downloads.html)
+- Apache Maven 3.6.0 oder höher: [Download Maven](https://maven.apache.org/download.cgi)
+- Git: [Download Git](https://git-scm.com/downloads)
 
 
 
