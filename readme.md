@@ -1,6 +1,10 @@
 
 
+Prerequisites:
 
+JDK 21: [Download JDK 21](https://www.oracle.com/java/technologies/javase/jdk21-archive-downloads.html)
+Apache Maven 3.6.0 oder höher: [Download Maven](https://maven.apache.org/download.cgi)
+Git: [Download Git](https://git-scm.com/downloads)
 
 
 
@@ -14,7 +18,19 @@ mvn clean install
 How to run:
 
 ```bash
-mvn spring-boot:run
+java -jar target/carapp-0.0.1-SNAPSHOT.jar
+```
+
+The Application will be available at:
+
+```bash
+http://localhost:8080
+```
+
+For Easy Testing you can use the Swagger UI:
+
+```bash
+http://localhost:8080/swagger-ui.html
 ```
 
 How to test:
@@ -22,6 +38,8 @@ How to test:
 ```bash
 mvn test
 ```
+
+
 
 
 
