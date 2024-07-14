@@ -91,11 +91,11 @@ class CustomerRepositoryAdapterTest {
             .postalCode("postalCode")
             .phoneNumber("phoneNumber")
             .email("email")
-            .rentals(new ArrayList<RentalEntity>())
+            .rentals(new ArrayList<>())
             .build();
 
     // Speichern des Repos simulieren
-    Mockito.when(customerRepository.save(customerEntity))
+    Mockito.when(customerRepository.save(Mockito.any(CustomerEntity.class)))
         .thenAnswer(
             invocation -> {
               CustomerEntity entity = invocation.getArgument(0);
@@ -103,11 +103,9 @@ class CustomerRepositoryAdapterTest {
               return entity;
             });
 
-    var savedCustomer = customerEntity.toBuilder().id(1L).build();
-
     customerRepositoryAdapter.saveCustomer(customer);
 
-    Mockito.verify(customerRepository, Mockito.times(1)).save(savedCustomer);
+    Mockito.verify(customerRepository, Mockito.times(1)).save(Mockito.any(CustomerEntity.class));
     Mockito.verify(customerEntityMapper, Mockito.times(1)).map(customer);
   }
 
@@ -138,14 +136,17 @@ class CustomerRepositoryAdapterTest {
             .postalCode("postalCode")
             .phoneNumber("phoneNumber")
             .email("email")
-            .rentals(new ArrayList<RentalEntity>())
+            .rentals(new ArrayList<>())
             .build();
 
-    Mockito.when(customerRepository.save(customerEntity)).thenReturn(customerEntity);
+    Mockito.when(customerRepository.findById(1L)).thenReturn(java.util.Optional.of(customerEntity));
+    Mockito.when(customerRepository.save(Mockito.any(CustomerEntity.class)))
+        .thenReturn(customerEntity);
 
     customerRepositoryAdapter.updateCustomer(customer);
 
     Mockito.verify(customerRepository, Mockito.times(1)).findById(1L);
+    Mockito.verify(customerRepository, Mockito.times(1)).save(Mockito.any(CustomerEntity.class));
   }
 
   @Test

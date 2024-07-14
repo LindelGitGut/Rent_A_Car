@@ -4,10 +4,16 @@ import de.lindele.carapp.customer.controller.model.request.UpdateCustomerRequest
 import de.lindele.carapp.customer.service.model.Customer;
 import org.springframework.stereotype.Component;
 
-// TODO implement
+/** Mapper class to map an UpdateCustomerRequest to a Customer. */
 @Component
 public class UpdateCustomerRequestMapper {
 
+  /**
+   * Maps an UpdateCustomerRequest to a Customer.
+   *
+   * @param updateCustomerRequest the request to map
+   * @return the mapped Customer
+   */
   public Customer map(UpdateCustomerRequest updateCustomerRequest) {
     return Customer.builder()
         .firstname(updateCustomerRequest.getFirstname())
@@ -19,16 +25,5 @@ public class UpdateCustomerRequestMapper {
         .phoneNumber(updateCustomerRequest.getPhoneNumber())
         .email(updateCustomerRequest.getEmail())
         .build();
-
-    //            new Customer();
-    //    customer.setFirstname(updateCustomerRequest.getFirstname());
-    //    customer.setLastname(updateCustomerRequest.getLastname());
-    //    customer.setAddress(updateCustomerRequest.getAddress());
-    //    customer.setBirthdate(updateCustomerRequest.getBirthdate());
-    //    customer.setCity(updateCustomerRequest.getCity());
-    //    customer.setPostalCode(updateCustomerRequest.getPostalCode());
-    //    customer.setPhoneNumber(updateCustomerRequest.getPhoneNumber());
-    //    customer.setEmail(updateCustomerRequest.getEmail());
-    // return customer;
   }
 }

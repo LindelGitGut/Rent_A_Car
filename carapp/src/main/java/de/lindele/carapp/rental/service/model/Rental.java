@@ -5,6 +5,7 @@ import de.lindele.carapp.customer.service.model.Customer;
 import java.util.Date;
 import lombok.*;
 
+/** Rental Business Model. */
 @Data
 @Builder
 @AllArgsConstructor

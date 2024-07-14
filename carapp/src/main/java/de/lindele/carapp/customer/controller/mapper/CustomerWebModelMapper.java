@@ -5,19 +5,16 @@ import de.lindele.carapp.customer.service.model.Customer;
 import java.sql.Date;
 import org.springframework.stereotype.Component;
 
-// TODO test Mapping
+/** Mapper class to map a Customer to a CustomerWebModel. */
 @Component
 public class CustomerWebModelMapper {
 
-  //    private String firstname;
-  //    private String lastname;
-  //    private String address;
-  //    private Date birthdate;
-  //    private String city;
-  //    private String postalCode;
-  //    private String phoneNumber;
-  //    private String email;
-
+  /**
+   * Maps a Customer to a CustomerWebModel.
+   *
+   * @param customer the customer to map
+   * @return the mapped CustomerWebModel
+   */
   public CustomerWebModel map(Customer customer) {
     CustomerWebModel customerWebModel = new CustomerWebModel();
     customerWebModel.setAddress(customer.getAddress());
@@ -31,6 +28,12 @@ public class CustomerWebModelMapper {
     return customerWebModel;
   }
 
+  /**
+   * Maps a CustomerWebModel to a Customer.
+   *
+   * @param customerWebModel the customer to map
+   * @return the mapped Customer
+   */
   public Customer map(CustomerWebModel customerWebModel) {
 
     return Customer.builder()
@@ -43,16 +46,5 @@ public class CustomerWebModelMapper {
         .postalCode(customerWebModel.getPostalCode())
         .birthdate(new Date(customerWebModel.getBirthdate().getTime()))
         .build();
-    //
-    //    Customer customer = new Customer();
-    //    customer.setAddress(customerWebModel.getAddress());
-    //    customer.setCity(customerWebModel.getCity());
-    //    customer.setEmail(customerWebModel.getEmail());
-    //    customer.setFirstname(customerWebModel.getFirstname());
-    //    customer.setLastname(customerWebModel.getLastname());
-    //    customer.setPhoneNumber(customerWebModel.getPhoneNumber());
-    //    customer.setPostalCode(customerWebModel.getPostalCode());
-    //    customer.setBirthdate(new Date(customerWebModel.getBirthdate().getTime()));
-    //    return customer;
   }
 }

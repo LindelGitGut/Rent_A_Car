@@ -3,6 +3,7 @@ package de.lindele.carapp.car.service.model;
 import java.math.BigDecimal;
 import lombok.*;
 
+/** Car Business Object */
 @NoArgsConstructor
 @AllArgsConstructor
 @Data

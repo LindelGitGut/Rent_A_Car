@@ -7,6 +7,7 @@ import de.lindele.carapp.rental.service.model.Rental;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+/** Maps a rental to a rental web model. */
 @Component
 @RequiredArgsConstructor
 public class RentalWebModelMapper {
@@ -14,6 +15,12 @@ public class RentalWebModelMapper {
   private final CarWebModelMapper carWebModelMapper;
   private final CustomerWebModelMapper customerWebModelMapper;
 
+  /**
+   * Maps a rental to a rental web model.
+   *
+   * @param rental the rental
+   * @return the rental web model
+   */
   public RentalWebModel map(Rental rental) {
 
     return RentalWebModel.builder()

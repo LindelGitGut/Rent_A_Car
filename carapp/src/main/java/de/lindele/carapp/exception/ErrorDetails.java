@@ -4,6 +4,7 @@ import java.util.Date;
 import lombok.Getter;
 import lombok.Setter;
 
+/** Error details. */
 @Getter
 @Setter
 public class ErrorDetails {

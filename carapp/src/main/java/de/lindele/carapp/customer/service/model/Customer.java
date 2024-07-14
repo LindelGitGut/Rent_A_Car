@@ -3,6 +3,7 @@ package de.lindele.carapp.customer.service.model;
 import java.sql.Date;
 import lombok.*;
 
+/** Model for the customer. */
 @Data
 @AllArgsConstructor
 @Builder

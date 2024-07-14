@@ -4,13 +4,17 @@ import de.lindele.carapp.car.controller.model.CarWebModel;
 import de.lindele.carapp.car.service.model.Car;
 import org.springframework.stereotype.Component;
 
-// TODO Implement Mapping
+/** Maps CarWebModel to Car and vice versa. */
 @Component
 public class CarWebModelMapper {
 
+  /**
+   * Maps CarWebModel to Car.
+   *
+   * @param carWebModel CarWebModel
+   * @return Car
+   */
   public Car map(CarWebModel carWebModel) {
-
-    // TODO Test is properties are copied correctly, testing
 
     Car car = new Car();
     car.setModel(carWebModel.getModel());
@@ -22,6 +26,12 @@ public class CarWebModelMapper {
     return car;
   }
 
+  /**
+   * Maps Car to CarWebModel.
+   *
+   * @param car Car
+   * @return CarWebModel
+   */
   public CarWebModel map(Car car) {
     CarWebModel carWebModel = new CarWebModel();
     carWebModel.setModel(car.getModel());

@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import lombok.*;
 
+/** Request object to create a car. */
 @Data
 @Builder
 public class CreateCarRequest {

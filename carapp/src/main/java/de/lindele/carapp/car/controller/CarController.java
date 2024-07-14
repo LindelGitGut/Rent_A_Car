@@ -19,10 +19,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
-
-/**
- * Controller for car operations.
- */
+/** Controller for car operations. */
 @RestController
 @RequestMapping("/car")
 @Tag(name = "Car Management", description = "APIs for managing Cars")
@@ -39,7 +36,7 @@ public class CarController {
 
   // CREATE
 
- /**
+  /**
    * Create a car.
    *
    * @param createCarRequest The car to create.

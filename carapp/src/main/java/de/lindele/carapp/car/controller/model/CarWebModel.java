@@ -1,10 +1,9 @@
 package de.lindele.carapp.car.controller.model;
 
-// TODO define model
-
 import java.math.BigDecimal;
 import lombok.*;
 
+/** Webmodel for Car. */
 @AllArgsConstructor
 @NoArgsConstructor
 @Data

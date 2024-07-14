@@ -1,3 +1,32 @@
+
+
+
+
+
+
+How to build:
+
+
+```bash
+mvn clean install
+```
+
+How to run:
+
+```bash
+mvn spring-boot:run
+```
+
+How to test:
+
+```bash
+mvn test
+```
+
+
+
+
+
 Ziel ist es eine API zu schaffen welche folgende bedingungen erfüllt:
 
 

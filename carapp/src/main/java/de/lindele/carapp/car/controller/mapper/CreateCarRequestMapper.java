@@ -4,17 +4,16 @@ import de.lindele.carapp.car.controller.model.request.CreateCarRequest;
 import de.lindele.carapp.car.service.model.Car;
 import org.springframework.stereotype.Component;
 
+/** Maps CreateCarRequest to Car and vice versa. */
 @Component
 public class CreateCarRequestMapper {
 
-  //
-  //    private String brand;
-  //    private String model;
-  //    private String color;
-  //    private String registrationNumber;
-  //    private Integer drivenkilometers;
-  //    private double pricePerKilometer
-
+  /**
+   * Maps CreateCarRequest to Car.
+   *
+   * @param createCarRequest CreateCarRequest
+   * @return Car
+   */
   public Car map(CreateCarRequest createCarRequest) {
     Car car = new Car();
     car.setBrand(createCarRequest.getBrand());
@@ -27,6 +26,12 @@ public class CreateCarRequestMapper {
     return car;
   }
 
+  /**
+   * Maps Car to CreateCarRequest.
+   *
+   * @param car Car
+   * @return CreateCarRequest
+   */
   public CreateCarRequest map(Car car) {
     CreateCarRequest createCarRequest =
         CreateCarRequest.builder()

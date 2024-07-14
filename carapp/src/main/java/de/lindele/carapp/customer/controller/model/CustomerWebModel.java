@@ -1,13 +1,10 @@
 package de.lindele.carapp.customer.controller.model;
 
 import java.sql.Date;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.Data;
 
-@NoArgsConstructor
-@Getter
-@Setter
+/** Web model for customer data. */
+@Data
 public class CustomerWebModel {
 
   private String firstname;

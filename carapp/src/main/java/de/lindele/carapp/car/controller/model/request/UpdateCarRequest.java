@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import lombok.*;
 
+/** Request object to update a car. */
 @Data
 @AllArgsConstructor
 @Builder

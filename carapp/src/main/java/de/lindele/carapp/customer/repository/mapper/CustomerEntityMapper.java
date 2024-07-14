@@ -4,10 +4,16 @@ import de.lindele.carapp.customer.repository.model.CustomerEntity;
 import de.lindele.carapp.customer.service.model.Customer;
 import org.springframework.stereotype.Component;
 
-// TODO check if works as suggested
+/** Mapper for the customer entity. */
 @Component
 public class CustomerEntityMapper {
 
+  /**
+   * Maps a customer to a customer entity.
+   *
+   * @param customer The customer to map.
+   * @return The mapped customer entity.
+   */
   public CustomerEntity map(Customer customer) {
 
     return CustomerEntity.builder()
@@ -21,20 +27,14 @@ public class CustomerEntityMapper {
         .email(customer.getEmail())
         .phoneNumber(customer.getPhoneNumber())
         .build();
-
-    //    CustomerEntity customerEntity = new CustomerEntity();
-    //    customerEntity.setAddress(customer.getAddress());
-    //    customerEntity.setBirthdate(customer.getBirthdate());
-    //    customerEntity.setId(customer.getId());
-    //    customerEntity.setEmail(customer.getEmail());
-    //    customerEntity.setPhoneNumber(customer.getPhoneNumber());
-    //    customerEntity.setFirstname(customer.getFirstname());
-    //    customerEntity.setLastname(customer.getLastname());
-    //    customerEntity.setPostalCode(customer.getPostalCode());
-    //    customerEntity.setCity(customer.getCity());
-    //    return customerEntity;
   }
 
+  /**
+   * Maps a customer entity to a customer.
+   *
+   * @param customerEntity The customer entity to map.
+   * @return The mapped customer.
+   */
   public Customer map(CustomerEntity customerEntity) {
 
     return Customer.builder()
@@ -48,17 +48,5 @@ public class CustomerEntityMapper {
         .firstname(customerEntity.getFirstname())
         .lastname(customerEntity.getLastname())
         .build();
-
-    //    Customer customer = new Customer();
-    //    customer.setId(customerEntity.getId());
-    //    customer.setAddress(customerEntity.getAddress());
-    //    customer.setCity(customerEntity.getCity());
-    //    customer.setPostalCode(customerEntity.getPostalCode());
-    //    customer.setBirthdate(customerEntity.getBirthdate());
-    //    customer.setEmail(customerEntity.getEmail());
-    //    customer.setPhoneNumber(customerEntity.getPhoneNumber());
-    //    customer.setFirstname(customerEntity.getFirstname());
-    //    customer.setLastname(customerEntity.getLastname());
-    //    return customer;
   }
 }

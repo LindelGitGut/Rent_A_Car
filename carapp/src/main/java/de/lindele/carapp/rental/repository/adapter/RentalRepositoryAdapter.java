@@ -7,11 +7,10 @@ import de.lindele.carapp.rental.repository.mapper.RentalEntityMapper;
 import de.lindele.carapp.rental.repository.model.RentalEntity;
 import de.lindele.carapp.rental.service.model.Rental;
 import de.lindele.carapp.rental.service.port.RentalPersistencePort;
-import java.sql.Date;
-import java.util.Optional;
-
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import java.sql.Date;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -25,22 +24,24 @@ public class RentalRepositoryAdapter implements RentalPersistencePort {
 
   private final RentalEntityMapper rentalEntityMapper;
 
-  @PersistenceContext
-  private EntityManager entityManager;
+  @PersistenceContext private EntityManager entityManager;
+
   @Override
   public Rental createRental(Rental rental) {
 
-    //Creating Proxy Object to minimize DB Calls (if Customer or Car is already existing is called in Service Layer)
+    // Creating Proxy Object to minimize DB Calls (if Customer or Car is already existing is called
+    // in Service Layer)
     CarEntity carProxy = entityManager.getReference(CarEntity.class, rental.getCar().getId());
-    CustomerEntity customerProxy = entityManager.getReference(CustomerEntity.class, rental.getCustomer().getId());
+    CustomerEntity customerProxy =
+        entityManager.getReference(CustomerEntity.class, rental.getCustomer().getId());
 
     RentalEntity rentalEntity = rentalEntityMapper.map(rental);
     rentalEntity.setCar(carProxy);
     rentalEntity.setCustomer(customerProxy);
 
-
     RentalEntity savedRental = rentalRepository.save(rentalEntity);
-    return rentalEntityMapper.map(savedRental);}
+    return rentalEntityMapper.map(savedRental);
+  }
 
   @Override
   public Rental getRental(Long id) {
@@ -73,27 +74,37 @@ public class RentalRepositoryAdapter implements RentalPersistencePort {
   }
 
   @Override
+  public Page<Rental> getAllRentalsByCarIdAndCustomerId(
+      Long carId, Long customerId, Pageable pageable) {
+    return rentalRepository
+        .findAllByCarIdAndCustomerId(carId, customerId, pageable)
+        .map(rentalEntityMapper::map);
+  }
+
+  @Override
   public Rental updateRental(Rental rental, Long id) {
     Optional<RentalEntity> optRentalEntity = rentalRepository.findById(id);
     if (optRentalEntity.isPresent()) {
 
-      //Creating Proxy Object to minimize DB Calls (if Customer or Car is already existing is called in Service Layer)
+      // Creating Proxy Object to minimize DB Calls (if Customer or Car is already existing is
+      // called in Service Layer)
       CarEntity carProxy = entityManager.getReference(CarEntity.class, rental.getCar().getId());
-      CustomerEntity customerProxy = entityManager.getReference(CustomerEntity.class, rental.getCustomer().getId());
+      CustomerEntity customerProxy =
+          entityManager.getReference(CustomerEntity.class, rental.getCustomer().getId());
 
       RentalEntity rentalEntity = rentalEntityMapper.map(rental);
 
-      //Get the saved RentalEntity
+      // Get the saved RentalEntity
       RentalEntity savedRentalEntity = optRentalEntity.get();
 
       savedRentalEntity = rentalEntity;
 
-        //Update the saved RentalEntity
-        savedRentalEntity.setCar(carProxy);
-        savedRentalEntity.setCustomer(customerProxy);
-        savedRentalEntity.setRentalStart(rental.getRentalDate());
-        savedRentalEntity.setRentalEnd(rental.getReturnDate());
-        savedRentalEntity.setKilometersDriven(rental.getKilometerDriven());
+      // Update the saved RentalEntity
+      savedRentalEntity.setCar(carProxy);
+      savedRentalEntity.setCustomer(customerProxy);
+      savedRentalEntity.setRentalStart(rental.getRentalDate());
+      savedRentalEntity.setRentalEnd(rental.getReturnDate());
+      savedRentalEntity.setKilometersDriven(rental.getKilometerDriven());
 
       return rentalEntityMapper.map(rentalRepository.save(rentalEntity));
     } else {

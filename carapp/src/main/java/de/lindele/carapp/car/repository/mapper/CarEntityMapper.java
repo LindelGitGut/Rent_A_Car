@@ -4,9 +4,16 @@ import de.lindele.carapp.car.repository.model.CarEntity;
 import de.lindele.carapp.car.service.model.Car;
 import org.springframework.stereotype.Component;
 
+/** Mapper class to map between Car and CarEntity */
 @Component
 public class CarEntityMapper {
 
+  /**
+   * Maps a CarEntity to a Car
+   *
+   * @param carEntity the CarEntity to map
+   * @return the mapped Car
+   */
   public Car map(CarEntity carEntity) {
     Car car = new Car();
     car.setId(carEntity.getId());
@@ -19,6 +26,12 @@ public class CarEntityMapper {
     return car;
   }
 
+  /**
+   * Maps a Car to a CarEntity
+   *
+   * @param car the Car to map
+   * @return the mapped CarEntity
+   */
   public CarEntity map(Car car) {
     CarEntity carEntity = new CarEntity();
     carEntity.setId(car.getId());

@@ -20,4 +20,6 @@ public interface RentalRepository extends JpaRepository<RentalEntity, Long> {
   Page<RentalEntity> findAllByCarId(Long carId, Pageable pageable);
 
   Page<RentalEntity> findAllByCustomerId(Long customerId, Pageable pageable);
+
+  Page<RentalEntity> findAllByCarIdAndCustomerId(Long carId, Long customerId, Pageable pageable);
 }

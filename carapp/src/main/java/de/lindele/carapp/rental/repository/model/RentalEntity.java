@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import java.util.Date;
 import lombok.*;
 
+/** Entity for a rental. */
 @Entity
 @Data
 @AllArgsConstructor

@@ -6,6 +6,7 @@ import java.math.BigDecimal;
 import java.util.List;
 import lombok.*;
 
+/** Entity class for the car table. */
 @Entity
 @Data
 @Table(name = "car")

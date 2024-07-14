@@ -7,8 +7,7 @@ import de.lindele.carapp.rental.service.model.Rental;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-// TODO fix Customer Mapping
-
+/** Maps a rental entity to a rental and vice versa. */
 @Component
 @RequiredArgsConstructor
 public class RentalEntityMapper {
@@ -17,32 +16,45 @@ public class RentalEntityMapper {
 
   private final CustomerEntityMapper customerEntityMapper;
 
+  /**
+   * Maps a rental entity to a rental.
+   *
+   * @param rentalEntity the rental entity
+   * @return the rental
+   */
   public Rental map(RentalEntity rentalEntity) {
 
-    Rental rental = Rental.builder()
-        .id(rentalEntity.getId())
-        .car(carEntityMapper.map(rentalEntity.getCar()))
-        .rentalDate(rentalEntity.getRentalStart())
-        .returnDate(rentalEntity.getRentalEnd())
+    Rental rental =
+        Rental.builder()
+            .id(rentalEntity.getId())
+            .car(carEntityMapper.map(rentalEntity.getCar()))
+            .rentalDate(rentalEntity.getRentalStart())
+            .returnDate(rentalEntity.getRentalEnd())
             // new rental entity has no kilometers driven therefore set null to 0
-        .kilometerDriven(rentalEntity.getKilometersDriven())
-        .customer(customerEntityMapper.map(rentalEntity.getCustomer()))
-        .build();
+            .kilometerDriven(rentalEntity.getKilometersDriven())
+            .customer(customerEntityMapper.map(rentalEntity.getCustomer()))
+            .build();
 
     return rental;
   }
 
+  /**
+   * Maps a rental to a rental entity.
+   *
+   * @param rental the rental
+   * @return the rental entity
+   */
   public RentalEntity map(Rental rental) {
 
-
-    RentalEntity rentalEntity= RentalEntity.builder()
-        .id(rental.getId())
-        .car(carEntityMapper.map(rental.getCar()))
-        .customer(customerEntityMapper.map(rental.getCustomer()))
-        .rentalStart(rental.getRentalDate())
-        .rentalEnd(rental.getReturnDate())
-        .kilometersDriven(rental.getKilometerDriven() == null ? 0 : rental.getKilometerDriven())
-        .build();
+    RentalEntity rentalEntity =
+        RentalEntity.builder()
+            .id(rental.getId())
+            .car(carEntityMapper.map(rental.getCar()))
+            .customer(customerEntityMapper.map(rental.getCustomer()))
+            .rentalStart(rental.getRentalDate())
+            .rentalEnd(rental.getReturnDate())
+            .kilometersDriven(rental.getKilometerDriven() == null ? 0 : rental.getKilometerDriven())
+            .build();
 
     return rentalEntity;
   }
